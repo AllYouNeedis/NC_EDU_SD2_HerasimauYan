@@ -10,8 +10,8 @@ import java.sql.Timestamp;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "login", nullable = false, unique = true)
     private String login;
@@ -34,27 +34,10 @@ public class User {
     @Column(name = "birthday", nullable = false)
     private Timestamp birthday;
 
-    @Column(name = "type", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private UserTypeEnum type;
-
-    @Column(name = "created_at", nullable = false)
-    private Timestamp jopa;
+    @Column(name = "user_role_id")
+    private Long userRoleId;
 
     public User() {
-    }
-
-    public User(String login, String password, String email, String surname, String name, String patronymic,
-                Timestamp birthday, UserTypeEnum type, Timestamp jopa) {
-        this.login = login;
-        this.password = password;
-        this.email = email;
-        this.surname = surname;
-        this.name = name;
-        this.patronymic = patronymic;
-        this.birthday = birthday;
-        this.type = type;
-        this.jopa = jopa;
     }
 
 }

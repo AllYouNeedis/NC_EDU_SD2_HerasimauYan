@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     private UserService userService;
@@ -23,19 +23,12 @@ public class UserController {
         return userService.getById(id);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<User> getAll(@RequestParam(name = "page") Integer page, @RequestParam(name = "page") Integer size) {
         return userService.getPage(page, size);
     }
 
     @PostMapping
-    public void post(@RequestParam String login, @RequestParam String password, @RequestParam String email,
-                     @RequestParam String surname, @RequestParam String name, @RequestParam String patronymic,
-                     @RequestParam long birthday) {
-        userService.saveUser(login, password, email, surname, name, patronymic, birthday);
-    }
-
-    @PostMapping("/good")
     public User post(@RequestBody User user) {
         return userService.saveUser(user);
     }
