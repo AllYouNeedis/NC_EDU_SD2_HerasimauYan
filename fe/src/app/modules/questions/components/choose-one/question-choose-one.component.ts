@@ -13,12 +13,12 @@ export class QuestionChooseOneComponent {
   questionOnly;
   @Input()
   answerOnly;
-  private questionVariants: string[] = ['Вариант 1'];
+  private questionVariants: string[] = ['Текст варианта'];
   private title: string;
   private required: boolean;
 
   addVariant() {
-    this.questionVariants.push('Вариант '.concat((this.questionVariants.length + 1).toString()));
+    this.questionVariants.push('Текст варианта');
   }
 
   deleteVariant(id: number) {

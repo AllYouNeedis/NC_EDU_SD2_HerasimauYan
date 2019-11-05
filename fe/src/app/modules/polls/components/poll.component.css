@@ -1,3 +1,13 @@
+.head {
+  display: block;
+}
+
+.head mat-form-field {
+  display: block;
+  width: 50%;
+  margin-left: 25%;
+}
+
 .example-list {
   width: 500px;
   max-width: 100%;

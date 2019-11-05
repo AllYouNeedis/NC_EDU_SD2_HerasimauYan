@@ -1,3 +1,18 @@
+<div class = "head">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Название опроса" [(ngModel)]="title">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Описание</mat-label>
+    <textarea matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="3"
+              cdkAutosizeMaxRows="5"
+              [(ngModel)]="description"
+    ></textarea>
+  </mat-form-field>
+</div>
+
 <div
   cdkDropList
   class="menu-list"
@@ -20,10 +35,10 @@
   #listPoll="cdkDropList"
   [cdkDropListConnectedTo]="listMenu"
   (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let child of childes" cdkDrag>
+  <div class="example-box" *ngFor="let child of childes; let i = index" cdkDrag>
     <div [ngSwitch]="child.nodeName">
       <ng-template ngSwitchCase="APP-QUESTION-TEXT">
-        <app-question-text [questionOnly]="true"></app-question-text>
+        <app-question-text [()]="" [questionOnly]="true"></app-question-text>
       </ng-template>
       <ng-template ngSwitchCase="APP-QUESTION-CHOOSE-ONE">
         <app-question-choose-one [questionOnly]="true"></app-question-choose-one>

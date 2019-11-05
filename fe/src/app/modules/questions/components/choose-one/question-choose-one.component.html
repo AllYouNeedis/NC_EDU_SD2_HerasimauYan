@@ -8,7 +8,7 @@
   </mat-form-field>
   <div class = "question-variants"  *ngFor="let variant of questionVariants; let i = index">
     <mat-form-field>
-      <input matInput type="text" placeholder="Текст варианта {{i+1}}" [(ngModel)]="variant">
+      <input matInput type="text" placeholder="Вариант {{i+1}}" [(ngModel)]="variant">
     </mat-form-field>
     <button mat-button color="accent" (click)="deleteVariant(i)">del</button>
   </div>

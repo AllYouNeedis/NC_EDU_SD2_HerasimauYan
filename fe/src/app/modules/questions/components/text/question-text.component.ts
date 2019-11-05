@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-question-text',
@@ -13,6 +13,8 @@ export class QuestionTextComponent {
   questionOnly;
   @Input()
   private answerOnly;
+  @Input()
+  @Output()
   private questionText: string;
   private answerText: string;
   private required: boolean;
