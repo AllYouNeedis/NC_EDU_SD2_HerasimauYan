@@ -1,0 +1,34 @@
+<form #regForm="ngForm">
+  <div class="regForm-group">
+    <label>Логин</label>
+    <input class="regForm-control" name="login" ngModel>
+  </div>
+  <div class="regForm-group">
+    <label>Пароль</label>
+    <input class="regForm-control" name="password" ngModel>
+  </div>
+  <div class="regForm-group">
+    <label>Email</label>
+    <input class="regForm-control" name="email" ngModel>
+  </div>
+  <div class="regForm-group">
+    <label>Фамилия</label>
+    <input class="regForm-control" name="surname" ngModel>
+  </div>
+  <div class="regForm-group">
+    <label>Имя</label>
+    <input class="regForm-control" name="name" ngModel>
+  </div>
+  <div class="regForm-group">
+    <label>Отчество</label>
+    <input class="regForm-control" name="patronymic" ngModel>
+  </div>
+  <div class="regForm-group">
+    <label>Дата рождения</label>
+    <input class="regForm-dp-control" placeholder="yyyy-mm-dd"
+           name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" ngModel>
+  </div>
+  <div class="regForm-group">
+    <button (click)="regUser(regForm)">Зарегистрироваться</button>
+  </div>
+</form>

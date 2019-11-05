@@ -1,0 +1,37 @@
+<div
+  cdkDropList
+  class="menu-list"
+  #listMenu="cdkDropList"
+  [cdkDropListData]="menuComponents"
+  [cdkDropListConnectedTo]="listPoll"
+  (cdkDropListDropped)="drop($event)">
+  <!--  <div *ngFor="let menuComponent of menuComponents" cdkDrag>{{menuComponent}}</div>-->
+  <div class="menu-list-entity" cdkDrag>
+    <app-question-text [simple]="true"></app-question-text>
+  </div>
+  <div class="menu-list-entity" cdkDrag>
+    <app-question-choose-one [simple]="true"></app-question-choose-one>
+  </div>
+</div>
+<div
+  cdkDropList
+  class="example-list"
+  [cdkDropListData]="childes"
+  #listPoll="cdkDropList"
+  [cdkDropListConnectedTo]="listMenu"
+  (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let child of childes" cdkDrag>
+    <div [ngSwitch]="child.nodeName">
+      <ng-template ngSwitchCase="APP-QUESTION-TEXT">
+        <app-question-text [questionOnly]="true"></app-question-text>
+      </ng-template>
+      <ng-template ngSwitchCase="APP-QUESTION-CHOOSE-ONE">
+        <app-question-choose-one [questionOnly]="true"></app-question-choose-one>
+      </ng-template>
+      <ng-template ngSwitchDefault>Какой-то неизвестный компонет</ng-template>
+    </div>
+  </div>
+</div>
+<div>
+
+</div>

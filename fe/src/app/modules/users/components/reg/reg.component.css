@@ -1,0 +1,22 @@
+.regForm-group {
+  margin-left: 40%;
+  margin-top: 2%;
+  display: block;
+}
+
+.regForm-control {
+  display: block;
+}
+
+.regForm-dp-control {
+  display: block;
+}
+
+.btn-calendar {
+  width: 2.75rem;
+  display: inline-block;
+}
+h2 {
+  margin-left: 40%;
+}
+
