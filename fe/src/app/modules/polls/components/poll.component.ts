@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {QuestionOption} from '../../users/models/question-option';
+import {QuestionOption} from '../../question/models/question-option';
 
 @Component({
   selector: 'app-poll',
