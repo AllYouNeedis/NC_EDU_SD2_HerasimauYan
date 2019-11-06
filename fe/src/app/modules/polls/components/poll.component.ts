@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {QuestionOption} from '../../users/models/question-option';
 
 @Component({
   selector: 'app-poll',
@@ -7,25 +8,24 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
   styleUrls: ['./poll.component.css'],
 })
 
-export class PollComponent {
+export class PollComponent implements OnInit {
   title: string;
-  description: string;
-  menuComponents: any[] = [];
-  childes: any[] = [];
-  questions: any[] = [];
-  id = 0;
+  menuQuestion: QuestionOption[] = [];
+  questions: QuestionOption[] = [];
+
+  ngOnInit(): void {
+    this.menuQuestion.push(new QuestionOption('text'));
+    this.menuQuestion.push(new QuestionOption('chooseOne'));
+  }
 
   drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      this.childes.push({nodeName: event.item.element.nativeElement.firstChild.nodeName, id: this.id++});
-      moveItemInArray(this.childes, this.childes.length - 1, event.currentIndex);
-    }
-    switch (event.item.element.nativeElement.firstChild.nodeName) {
-      case "APP-QUESTION-TEXT":
-        this.questions.push();
-        break;
+      console.log(event);
+      const question = this.menuQuestion[event.previousIndex];
+      this.questions.push(question.cloneBaseType(question.type));
+      moveItemInArray(event.container.data, this.questions.length - 1, event.currentIndex);
     }
   }
 }

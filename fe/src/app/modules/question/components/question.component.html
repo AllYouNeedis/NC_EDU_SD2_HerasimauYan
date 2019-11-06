@@ -1,0 +1,56 @@
+<div [ngSwitch]="questionOption.type">
+  <ng-template ngSwitchCase="text"><ng-content *ngTemplateOutlet="text"></ng-content></ng-template>
+  <ng-template ngSwitchCase="chooseOne"><ng-content *ngTemplateOutlet="chooseOne"></ng-content></ng-template>
+</div>
+
+
+<ng-template #text>
+  <div *ngIf="questionOnly" class="question-block">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Краткий ответ" [(ngModel)]="questionOption.elements[0]" disabled>
+    </mat-form-field>
+    <mat-slide-toggle [(ngModel)]="questionOption.required">Обязательный</mat-slide-toggle>
+  </div>
+
+  <div *ngIf="answerOnly" class="question-block">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Краткий ответ" [(ngModel)]="questionOption.elements[0]">
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="simple" class="question-simple">
+    Текстовый вопрос
+  </div>
+
+</ng-template>
+
+<ng-template #chooseOne>
+  <div *ngIf="questionOnly">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title">
+    </mat-form-field>
+    <div class = "question-variants"  *ngFor="let variant of questionOption.elements; let i = index">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Вариант {{i+1}}" [(ngModel)]="variant">
+      </mat-form-field>
+      <button mat-button color="accent" (click)="deleteVariant(i)">del</button>
+    </div>
+    <button mat-button color="primary" (click)="addVariant()">Добавить вариант</button>
+    <mat-slide-toggle [(ngModel)]="questionOption.required">Обязательный</mat-slide-toggle>
+  </div>
+
+  <div *ngIf="simple" class="question-simple">
+    Выпадающий список
+  </div>
+
+</ng-template>
+
+<ng-template #chooseMany>
+
+</ng-template>

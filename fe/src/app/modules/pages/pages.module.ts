@@ -8,7 +8,7 @@ import {UserRegComponent} from './components/user-reg/user-reg.component';
 import {UsersModule} from '../users/users.module';
 import {PollConstructorComponent} from './components/poll-constructor/poll-constructor.component';
 import {PollModule} from '../polls/poll.module';
-import {QuestionsModule} from '../questions/questions.module';
+import {QuestionsModule} from '../question/questions.module';
 
 @NgModule({
   declarations: [
