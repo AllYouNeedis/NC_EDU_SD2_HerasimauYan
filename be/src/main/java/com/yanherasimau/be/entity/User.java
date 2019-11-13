@@ -1,5 +1,6 @@
 package com.yanherasimau.be.entity;
 
+import com.yanherasimau.be.entity.enums.UserRole;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -34,8 +35,9 @@ public class User {
     @Column(name = "birthday", nullable = false)
     private Timestamp birthday;
 
-    @Column(name = "user_role_id")
-    private Long userRoleId;
+    @Column(name = "user_role", nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private UserRole userRole;
 
     public User() {
     }
