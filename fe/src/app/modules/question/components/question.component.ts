@@ -1,5 +1,6 @@
-import {Component, Input, Output} from '@angular/core';
+import {Component, ElementRef, Input, Output, ViewChild} from '@angular/core';
 import {QuestionOption} from '../models/question-option';
+import {QuestionVariant} from '../models/question-variant';
 
 @Component({
   selector: 'app-question',
@@ -18,11 +19,17 @@ export class QuestionComponent {
   @Output()
   private questionOption: QuestionOption;
 
+  // @ViewChild("text", {static: false})
+  // text: ElementRef;
+  //
+  // @ViewChild("chooseOne", {static: false})
+  // chooseOne: ElementRef;
+
   addVariant() {
-    this.questionOption.elements.push('');
+    this.questionOption.questionVariants.push(new QuestionVariant());
   }
 
   deleteVariant(id: number) {
-    this.questionOption.elements.splice(id, 1);
+    this.questionOption.questionVariants.splice(id, 1);
   }
 }

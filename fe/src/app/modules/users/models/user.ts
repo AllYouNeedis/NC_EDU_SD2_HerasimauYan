@@ -3,12 +3,12 @@ export class User {
   constructor(
     private login: string,
     private password: string,
-    private email: string,
-    private surname: string,
-    private name: string,
-    private patronymic: string,
-    private birthday: string,
-    private userRoleId: number
+    private email?: string,
+    private surname?: string,
+    private name?: string,
+    private patronymic?: string,
+    private birthday?: string,
+    private userRole?: string
   ) {}
 }
 

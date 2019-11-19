@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface UserService {
     User getById(long id);
-    User saveUser(User user);
     List<User> getPage(Integer page, Integer size);
+    User saveUser(User user);
+    User auth(String login, String password);
 }

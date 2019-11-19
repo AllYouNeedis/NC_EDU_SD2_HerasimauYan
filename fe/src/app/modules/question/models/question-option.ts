@@ -1,12 +1,15 @@
+import {QuestionVariant} from './question-variant';
+
 export class QuestionOption {
-  title?: string;
+  title: string;
   type: string;
-  elements?: string[];
-  required?: boolean;
+  questionVariants: QuestionVariant[];
+  required: boolean;
 
   constructor(type: string) {
     this.type = type;
-    this.elements = [];
+    this.required = false;
+    this.questionVariants = [];
   }
 
   cloneBaseType(type: string): QuestionOption {

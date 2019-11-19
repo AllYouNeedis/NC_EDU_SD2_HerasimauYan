@@ -13,12 +13,8 @@ public class AnswerVariant {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @Column(name = "answer_id")
-  private long answerId;
-
-  @OneToOne()
-  @JoinColumn(name = "question_variant_id", nullable = false)
-  private QuestionVariant questionVariant;
+  @Column(name = "content")
+  private String content;
 
   public AnswerVariant() {
   }

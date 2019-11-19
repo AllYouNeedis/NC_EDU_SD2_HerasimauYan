@@ -7,15 +7,20 @@ import {FormsModule} from '@angular/forms';
 import {UserRegComponent} from './components/user-reg/user-reg.component';
 import {UsersModule} from '../users/users.module';
 import {PollConstructorComponent} from './components/poll-constructor/poll-constructor.component';
-import {PollModule} from '../polls/poll.module';
+import {PollModule} from '../poll/poll.module';
 import {QuestionsModule} from '../question/questions.module';
+import {UserAuthComponent} from './components/user-auth/user-auth.component';
+import {SharedTopicConstructorComponent} from './components/shared-topic-constructor/shared-topic-constructor.component';
+import {TopicModule} from '../topic/topic.module';
 
 @NgModule({
   declarations: [
     NotFoundComponent,
     UserRegComponent,
     HomeComponent,
-    PollConstructorComponent
+    PollConstructorComponent,
+    UserAuthComponent,
+    SharedTopicConstructorComponent
   ],
   imports: [
     HeaderModule,
@@ -23,10 +28,17 @@ import {QuestionsModule} from '../question/questions.module';
     RouterModule,
     FormsModule,
     PollModule,
-    QuestionsModule
+    QuestionsModule,
+    TopicModule
   ],
   providers: [],
-  exports: [NotFoundComponent, UserRegComponent, HomeComponent, PollConstructorComponent]
+  exports: [NotFoundComponent,
+    UserRegComponent,
+    HomeComponent,
+    PollConstructorComponent,
+    UserAuthComponent,
+    SharedTopicConstructorComponent
+  ]
 })
 
 export class PagesModule {

@@ -24,8 +24,13 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public List<User> getAll(@RequestParam(name = "page") Integer page, @RequestParam(name = "page") Integer size) {
+    public List<User> getAll(@RequestParam(name = "page") Integer page, @RequestParam(name = "size") Integer size) {
         return userService.getPage(page, size);
+    }
+
+    @GetMapping("/auth")
+    public User auth(@RequestParam(name = "login") String login, @RequestParam(name = "password") String password) {
+        return userService.auth(login, password);
     }
 
     @PostMapping

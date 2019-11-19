@@ -12,11 +12,8 @@ public class QuestionVariant {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @Column(name = "question_id")
-  private long questionId;
-
-  @Column(name = "element", nullable = false)
-  private String element;
+  @Column(name = "content", nullable = false)
+  private String content;
 
   public QuestionVariant() {
   }

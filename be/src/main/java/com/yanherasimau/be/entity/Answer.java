@@ -23,7 +23,8 @@ public class Answer {
     @Column(name = "passed_poll_id", nullable = false)
     private long passedPollId;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "answerId")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "answer_id")
     private List<AnswerVariant> answerVariants;
 
     public Answer() {

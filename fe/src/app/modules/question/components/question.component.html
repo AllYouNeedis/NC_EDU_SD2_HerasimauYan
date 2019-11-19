@@ -3,6 +3,7 @@
   <ng-template ngSwitchCase="chooseOne"><ng-content *ngTemplateOutlet="chooseOne"></ng-content></ng-template>
 </div>
 
+<!--<ng-container *ngTemplateOutlet="this[questionOption.type]"></ng-container>-->
 
 <ng-template #text>
   <div *ngIf="questionOnly" class="question-block">
@@ -10,7 +11,7 @@
       <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title">
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="Краткий ответ" [(ngModel)]="questionOption.elements[0]" disabled>
+      <input matInput type="text" placeholder="Краткий ответ" disabled>
     </mat-form-field>
     <mat-slide-toggle [(ngModel)]="questionOption.required">Обязательный</mat-slide-toggle>
   </div>
@@ -20,7 +21,7 @@
       <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title" disabled>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="Краткий ответ" [(ngModel)]="questionOption.elements[0]">
+      <input matInput type="text" placeholder="Краткий ответ" [(ngModel)]="questionOption.questionVariants[0].content">
     </mat-form-field>
   </div>
 
@@ -35,9 +36,9 @@
     <mat-form-field>
       <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title">
     </mat-form-field>
-    <div class = "question-variants"  *ngFor="let variant of questionOption.elements; let i = index">
+    <div class = "question-variants"  *ngFor="let variant of questionOption.questionVariants; let i = index">
       <mat-form-field>
-        <input matInput type="text" placeholder="Вариант {{i+1}}" [(ngModel)]="variant">
+        <input matInput type="text" placeholder="Вариант {{i+1}}" [(ngModel)]="variant.content">
       </mat-form-field>
       <button mat-button color="accent" (click)="deleteVariant(i)">del</button>
     </div>

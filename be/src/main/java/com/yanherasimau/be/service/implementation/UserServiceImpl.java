@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
         return this
                 .userRepository.findAll(PageRequest.of(page, size)).getContent();
     }
+
+    @Override
+    public User auth(String login, String password) {
+        return this.userRepository.findByLoginAndPassword(login, password);
+    }
 }

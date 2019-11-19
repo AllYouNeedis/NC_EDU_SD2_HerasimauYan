@@ -1,0 +1,35 @@
+<div class = "head">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Название темы" [(ngModel)]="topicModel.title">
+  </mat-form-field>
+</div>
+
+<div
+  cdkDropList
+  class="menu-list"
+  #listMenu="cdkDropList"
+  [cdkDropListData]="menuQuestion"
+  [cdkDropListConnectedTo]="listPoll"
+  (cdkDropListDropped)="drop($event)">
+
+  <div class="menu-list-entity" *ngFor="let component of menuQuestion; let i = index" cdkDrag>
+    <app-question [simple]="true" [questionOption]="component"></app-question>
+  </div>
+</div>
+
+<div
+  cdkDropList
+  class="example-list"
+  [cdkDropListData]="topicModel.questions"
+  #listPoll="cdkDropList"
+  [cdkDropListConnectedTo]="listMenu"
+  (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let question of topicModel.questions ; let i = index" cdkDrag>
+    <app-question [questionOnly]="true" [questionOption]="question"></app-question>
+    <button mat-button color="warn" (click)="topicModel.deleteQuestionOption(i)">del</button>
+  </div>
+</div>
+
+<div>
+  <button mat-button color="primary" (click)="submit()">Сохранить тему</button>
+</div>

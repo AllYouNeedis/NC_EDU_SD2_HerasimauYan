@@ -10,7 +10,7 @@ import {User} from '../../models/user';
 })
 
 export class RegComponent {
-  defaultRole = 1;
+  defaultRole = 'USER';
   constructor(private userService: UserService) {}
 
   regUser(form: NgForm) {

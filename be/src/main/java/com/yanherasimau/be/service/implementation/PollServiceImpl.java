@@ -40,8 +40,11 @@ public class PollServiceImpl implements PollService {
     @Transactional(propagation = Propagation.REQUIRED)
     public Poll getById(long id) {
         Poll poll = pollRepository.findById(id).orElse(null);
+        assert poll != null;
         Hibernate.initialize(poll.getQuestions());
         Hibernate.initialize(poll.getTopics());
         return poll;
     }
+
+
 }

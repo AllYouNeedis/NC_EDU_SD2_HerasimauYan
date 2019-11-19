@@ -9,15 +9,20 @@ import {FormsModule} from '@angular/forms';
 import {PagesModule} from './modules/pages/pages.module';
 import {NotFoundComponent} from './modules/pages/components/404/not-found.component';
 import {HomeComponent} from './modules/pages/components/home/home.component';
-import {RegComponent} from './modules/users/components/reg/reg.component';
 import {PollConstructorComponent} from './modules/pages/components/poll-constructor/poll-constructor.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatNativeDateModule} from '@angular/material';
+import {UserRegComponent} from './modules/pages/components/user-reg/user-reg.component';
+import {UserAuthComponent} from './modules/pages/components/user-auth/user-auth.component';
+import {SharedTopicConstructorComponent} from './modules/pages/components/shared-topic-constructor/shared-topic-constructor.component';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: UserAuthComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'reg', component: RegComponent},
-  {path: 'pollConstructor', component: PollConstructorComponent},
+  {path: 'reg', component: UserRegComponent},
+  {path: 'auth', component: UserAuthComponent},
+  {path: 'poll-constructor', component: PollConstructorComponent},
+  {path: 'topic-constructor', component: SharedTopicConstructorComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
@@ -31,6 +36,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgbModule,
     FormsModule,
+    MatNativeDateModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule
   ],
@@ -40,4 +46,5 @@ const appRoutes: Routes = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

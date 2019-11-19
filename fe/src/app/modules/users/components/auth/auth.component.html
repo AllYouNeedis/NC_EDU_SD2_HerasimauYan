@@ -1,0 +1,10 @@
+<form [formGroup]="form" class="auth-form">
+  <mat-form-field class="example-full-width">
+    <input matInput formControlName="login" placeholder="Логин">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput formControlName="password" placeholder="Пароль">
+  </mat-form-field>
+  <button mat-button (click)="logIn()">Авторизоваться</button>
+  <button mat-button routerLink="/reg">Зарегестрироваться</button>
+</form>
