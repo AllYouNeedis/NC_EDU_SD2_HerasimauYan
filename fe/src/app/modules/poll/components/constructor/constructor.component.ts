@@ -3,6 +3,8 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {QuestionOption} from '../../../question/models/question-option';
 import {PollService} from '../../../../services/poll.service';
 import {Poll} from '../../models/poll';
+import {TopicService} from '../../../../services/topic.service';
+import {Topic} from '../../../topic/models/topic';
 
 @Component({
   selector: 'app-constructor',
@@ -11,35 +13,51 @@ import {Poll} from '../../models/poll';
 })
 
 export class ConstructorComponent implements OnInit {
-  menuQuestion: QuestionOption[] = [];
   pollModel: Poll;
 
-  constructor(private pollService: PollService) {
+  constructor(private pollService: PollService, private topicService: TopicService) {
   }
 
   ngOnInit(): void {
-    this.menuQuestion.push(new QuestionOption('text'));
-    this.menuQuestion.push(new QuestionOption('chooseOne'));
     this.pollModel = new Poll();
-    this.pollModel.userId = +localStorage.getItem( 'user_id');
+    this.pollModel.userId = +localStorage.getItem('user_id');
   }
 
   drop(event: CdkDragDrop<any[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    if (event.container === event.previousContainer) { // двигаем внутри конструктора
+      this.changePos(event.previousIndex, event.currentIndex);
     } else {
+      const draggedInData = event.previousContainer.data[event.previousIndex];
+
+      if (draggedInData instanceof QuestionOption) {
+        this.pollModel.addQuestionOption(QuestionOption.cloneBase(draggedInData));
+        this.changePos( this.pollModel.questions.length - 1, event.currentIndex);
+      }
+
+      if (draggedInData instanceof Topic) {
+        this.pollModel.addTopic(Topic.cloneBase(draggedInData));
+        this.changePos(this.pollModel.topics.length - 1, event.currentIndex);
+      }
       console.log(event);
-      const question = this.menuQuestion[event.previousIndex];
-      this.pollModel.addQuestionOption(question.cloneBaseType(question.type));
-      moveItemInArray(event.container.data, this.pollModel.questions.length - 1, event.currentIndex);
+    }
+  }
+
+  changePos(prev: number, curr: number): void {
+    const topicsNum = this.pollModel.topics.length;
+    if (prev >= topicsNum) { // двигаем вопросы
+      moveItemInArray(this.pollModel.questions, prev, curr >= topicsNum ? curr : topicsNum);
+    } else {  // двигаем темы
+      moveItemInArray(this.pollModel.topics, prev, curr >= topicsNum ? topicsNum : curr);
     }
   }
 
   deleteQuestionOption(id: number) {
     this.pollModel.deleteQuestionOption(id);
+
   }
 
   submit() {
+    this.pollModel.submitted = true;
     this.pollService.addPoll(this.pollModel);
   }
 }

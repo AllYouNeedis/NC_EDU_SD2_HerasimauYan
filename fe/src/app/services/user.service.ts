@@ -30,19 +30,6 @@ export class UserService {
         error => {
           console.log(error);
         });
-    // const user = {
-    //   id: null,
-    //   login,
-    //   password
-    // } as unknown as User;
-    // this.http.post(this.usersUrl, user)
-    //   .subscribe((response: any) => {
-    //     console.log(response);
-    //     localStorage.setItem('user_id', response);
-    //   },
-    //     error => {
-    //     console.log(error);
-    //   });
   }
 
   logOut() {

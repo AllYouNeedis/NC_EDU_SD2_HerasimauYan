@@ -1,0 +1,15 @@
+<div class="align-self-center">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Название темы" [(ngModel)]="topicModel.title">
+  </mat-form-field>
+</div>
+
+<div
+  cdkDropList
+  class="example-list"
+  (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let question of topicModel.questions ; let i = index" cdkDrag>
+    <app-question-details [questionOnly]="true" [questionOption]="question"></app-question-details>
+    <button mat-button color="warn" (click)="deleteQuestionOption(i)">del</button>
+  </div>
+</div>

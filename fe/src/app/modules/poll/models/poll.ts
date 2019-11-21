@@ -6,9 +6,13 @@ export class Poll {
   submitted: boolean;
   userId: number;
   questions: QuestionOption[] = [];
-  topics: Topic[];
+  topics: Topic[] = [];
 
   constructor() {
+  }
+
+  addTopic(topic: Topic) {
+    this.topics.push(topic);
   }
 
   addQuestionOption(question: QuestionOption) {

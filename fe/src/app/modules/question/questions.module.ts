@@ -5,11 +5,14 @@ import {TextFieldModule} from '@angular/cdk/text-field';
 import {CommonModule} from '@angular/common';
 import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, MatSlideToggleModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
-import {QuestionComponent} from './components/question.component';
+import {QuestionDetailsComponent} from './components/question-details/question-details.component';
+import {QuestionMenuComponent} from './components/question-menu/question-menu.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
-    QuestionComponent
+    QuestionDetailsComponent,
+    QuestionMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -22,10 +25,11 @@ import {QuestionComponent} from './components/question.component';
     FormsModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    DragDropModule
   ],
   providers: [],
-  exports: [QuestionComponent]
+  exports: [QuestionDetailsComponent, QuestionMenuComponent]
 })
 
 export class QuestionsModule {

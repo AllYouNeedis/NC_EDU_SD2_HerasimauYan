@@ -1,36 +1,40 @@
-<div class = "head">
-  <mat-form-field>
-    <input matInput type="text" placeholder="Название опроса" [(ngModel)]="pollModel.title">
-  </mat-form-field>
-</div>
+<div class="container-fluid" cdkDropListGroup>
+  <div class="row flex-xl-nowrap">
 
-<div
-  cdkDropList
-  class="menu-list"
-  #listMenu="cdkDropList"
-  [cdkDropListData]="menuQuestion"
-  [cdkDropListConnectedTo]="listPoll"
-  (cdkDropListDropped)="drop($event)">
+    <div class="col-md-3 p-0">
+      <app-question-menu></app-question-menu>
+    </div>
 
-  <div class="menu-list-entity" *ngFor="let component of menuQuestion; let i = index" cdkDrag>
-    <app-question [simple]="true" [questionOption]="component"></app-question>
-  </div>
-</div>
+    <div class="col-md-6">
+      <div class = "head">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Название опроса" [(ngModel)]="pollModel.title">
+        </mat-form-field>
+      </div>
+      <div
+        cdkDropList
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let topic of pollModel.topics ; let i = index" cdkDrag>
+          <app-topic-question-only [topicModel]="topic"></app-topic-question-only>
+        </div>
+        <div class="example-box" *ngFor="let question of pollModel.questions ; let i = index" cdkDrag>
+          <app-question-details [questionOnly]="true" [questionOption]="question"></app-question-details>
+          <button mat-icon-button color="warn" (click)="deleteQuestionOption(i)">
+            <mat-icon style="font-size: 24px;">close</mat-icon>
+          </button>
+        </div>
+      </div>
 
-<div
-  cdkDropList
-  class="example-list"
-  [cdkDropListData]="pollModel.questions"
-  #listPoll="cdkDropList"
-  [cdkDropListConnectedTo]="listMenu"
-  (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let question of pollModel.questions ; let i = index" cdkDrag>
-    <app-question [questionOnly]="true" [questionOption]="question"></app-question>
-    <button mat-button color="warn" (click)="deleteQuestionOption(i)">del</button>
+      <button mat-button color="primary" (click)="submit()">Отправить опрос</button>
+      <button mat-button color="primary" (click)="submit()">Сохранить как черновик</button>
+    </div>
+
+    <div class="col-md-3 p-0">
+      <app-topic-menu></app-topic-menu>
+    </div>
   </div>
 </div>
 
 <div>
-  <button mat-button color="primary" (click)="submit()">Отправить опрос</button>
-  <button mat-button color="primary" (click)="submit()">Сохранить как черновик</button>
 </div>

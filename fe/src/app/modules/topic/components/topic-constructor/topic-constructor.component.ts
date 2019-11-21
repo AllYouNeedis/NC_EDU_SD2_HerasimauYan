@@ -11,6 +11,7 @@ import {TopicService} from '../../../../services/topic.service';
 })
 
 export class TopicConstructorComponent implements OnInit {
+  menuTopic: Topic[] = [];
   menuQuestion: QuestionOption[] = [];
   topicModel: Topic;
 
