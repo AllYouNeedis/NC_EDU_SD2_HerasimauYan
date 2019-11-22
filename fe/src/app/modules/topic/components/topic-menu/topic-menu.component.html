@@ -2,6 +2,7 @@
   cdkDropList
   class="example-list col-md-12"
   [cdkDropListData]="menuTopic"
+
   (cdkDropListDropped)="dropTopic($event)">
   <div class="example-box" *ngFor="let topic of menuTopic" cdkDrag>
     {{topic.title}}

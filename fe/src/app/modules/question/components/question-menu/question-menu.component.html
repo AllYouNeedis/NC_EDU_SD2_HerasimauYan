@@ -1,9 +1,10 @@
 <div
   cdkDropList
   class="example-list"
+  id="question-menu"
   [cdkDropListData]="menuQuestion"
-  (cdkDropListDropped)="dropQuestion($event)">
-
+  (cdkDropListDropped)="dropQuestion($event)"
+  [cdkDropListConnectedTo]="dropListConnectedTo">
   <div class="p-2 bd-highlight example-box" *ngFor="let component of menuQuestion; let i = index" cdkDrag>
     <app-question-details [simple]="true" [questionOption]="component"></app-question-details>
   </div>

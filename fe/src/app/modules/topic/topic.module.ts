@@ -10,14 +10,14 @@ import {TopicConstructorComponent} from './components/topic-constructor/topic-co
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {QuestionsModule} from '../question/questions.module';
 import {TopicMenuComponent} from './components/topic-menu/topic-menu.component';
-import {TopicQuestionOnlyComponent} from './components/topic-question-only/topic-question-only.component';
+import {TopicQuestionComponent} from './components/topic-question/topic-question.component';
 
 @NgModule({
   declarations: [
     TopicComponent,
     TopicConstructorComponent,
     TopicMenuComponent,
-    TopicQuestionOnlyComponent
+    TopicQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +35,7 @@ import {TopicQuestionOnlyComponent} from './components/topic-question-only/topic
     QuestionsModule
   ],
   providers: [],
-  exports: [TopicComponent, TopicConstructorComponent, TopicMenuComponent, TopicQuestionOnlyComponent]
+  exports: [TopicComponent, TopicConstructorComponent, TopicMenuComponent, TopicQuestionComponent]
 })
 
 export class TopicModule {
