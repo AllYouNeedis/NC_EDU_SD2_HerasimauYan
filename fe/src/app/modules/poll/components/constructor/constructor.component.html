@@ -14,12 +14,13 @@
       <div
         cdkDropList
         class="example-list"
+        id="poll-constructor-list"
         (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let topic of pollModel.topics ; let i = index" cdkDrag>
           <app-topic-question-only [topicModel]="topic"></app-topic-question-only>
         </div>
         <div class="example-box" *ngFor="let question of pollModel.questions ; let i = index" cdkDrag>
-          <app-question-details [questionOnly]="true" [questionOption]="question"></app-question-details>
+          <app-question-details [questionOption]="question"></app-question-details>
           <button mat-icon-button color="warn" (click)="deleteQuestionOption(i)">
             <mat-icon style="font-size: 24px;">close</mat-icon>
           </button>

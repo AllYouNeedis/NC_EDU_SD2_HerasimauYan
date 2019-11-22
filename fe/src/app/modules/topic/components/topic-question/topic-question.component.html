@@ -11,8 +11,8 @@
   [cdkDropListConnectedTo]="dropListConnectedTo"
   [cdkDropListData]="topicModel.questions">
   <div class="example-box" *ngFor="let question of topicModel.questions ; let i = index" cdkDrag>
-    <app-question-details [questionOnly]="true" [questionOption]="question"></app-question-details>
-    <button mat-icon-button color="warn" (click)="deleteQuestionOption(i)">
+    <app-question-details [questionOption]="question"></app-question-details>
+    <button mat-icon-button color="warn" (click)="topicModel.deleteQuestionOption(i)">
       <mat-icon style="font-size: 24px;">close</mat-icon>
     </button>
   </div>

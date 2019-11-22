@@ -10,20 +10,8 @@ import {QuestionVariant} from '../../models/question-variant';
 
 export class QuestionDetailsComponent {
   @Input()
-  questionOnly;
-  @Input()
-  answerOnly;
-  @Input()
-  simple;
-  @Input()
   @Output()
   private questionOption: QuestionOption;
-
-  // @ViewChild("text", {static: false})
-  // text: ElementRef;
-  //
-  // @ViewChild("chooseOne", {static: false})
-  // chooseOne: ElementRef;
 
   addVariant() {
     this.questionOption.questionVariants.push(new QuestionVariant(''));

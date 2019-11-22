@@ -2,8 +2,8 @@ import {QuestionOption} from '../../question/models/question-option';
 
 export class Topic {
 
-  constructor() {
-    this.shared = true;
+  constructor(shared: boolean) {
+    this.shared = shared;
     this.questions = [];
   }
   id?: number;
@@ -12,7 +12,7 @@ export class Topic {
   questions: QuestionOption[];
 
   static cloneBase(base: Topic): Topic {
-    const result = new Topic();
+    const result = new Topic(base.shared);
     result.title = base.title;
     result.questions = [];
     base.questions.forEach( question => {

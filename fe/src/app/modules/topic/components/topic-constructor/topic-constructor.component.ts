@@ -11,7 +11,6 @@ import {TopicService} from '../../../../services/topic.service';
 })
 
 export class TopicConstructorComponent implements OnInit {
-  menuTopic: Topic[] = [];
   menuQuestion: QuestionOption[] = [];
   topicModel: Topic;
 
@@ -21,7 +20,7 @@ export class TopicConstructorComponent implements OnInit {
   ngOnInit(): void {
     this.menuQuestion.push(new QuestionOption('text'));
     this.menuQuestion.push(new QuestionOption('chooseOne'));
-    this.topicModel = new Topic();
+    this.topicModel = new Topic(true);
   }
 
   drop(event: CdkDragDrop<any[]>) {

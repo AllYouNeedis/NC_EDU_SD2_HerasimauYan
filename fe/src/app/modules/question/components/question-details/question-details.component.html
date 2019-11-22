@@ -6,52 +6,29 @@
 <!--<ng-container *ngTemplateOutlet="this[questionOption.type]"></ng-container>-->
 
 <ng-template #text>
-  <div *ngIf="questionOnly" class="question-block">
-    <mat-form-field>
-      <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="text" placeholder="Краткий ответ" disabled>
-    </mat-form-field>
-    <mat-slide-toggle [(ngModel)]="questionOption.required">Обязательный</mat-slide-toggle>
-  </div>
-
-  <div *ngIf="answerOnly" class="question-block">
-    <mat-form-field>
-      <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title" disabled>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="text" placeholder="Краткий ответ" [(ngModel)]="questionOption.questionVariants[0].content">
-    </mat-form-field>
-  </div>
-
-  <div *ngIf="simple" class="question-simple">
-    Текстовый вопрос
-  </div>
-
+  <mat-form-field>
+    <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Краткий ответ" disabled>
+  </mat-form-field>
+  <mat-slide-toggle [(ngModel)]="questionOption.required">Обязательный</mat-slide-toggle>
 </ng-template>
 
 <ng-template #chooseOne>
-  <div *ngIf="questionOnly">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title">
+  </mat-form-field>
+  <div class = "question-variants"  *ngFor="let variant of questionOption.questionVariants; let i = index">
     <mat-form-field>
-      <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title">
+      <input matInput type="text" placeholder="Вариант {{i+1}}" [(ngModel)]="variant.content">
     </mat-form-field>
-    <div class = "question-variants"  *ngFor="let variant of questionOption.questionVariants; let i = index">
-      <mat-form-field>
-        <input matInput type="text" placeholder="Вариант {{i+1}}" [(ngModel)]="variant.content">
-      </mat-form-field>
-      <button mat-icon-button color="warn" (click)="deleteVariant(i)">
-        <mat-icon style="font-size: 24px;">close</mat-icon>
-      </button>
-    </div>
-    <button mat-button color="primary" (click)="addVariant()">Добавить вариант</button>
-    <mat-slide-toggle [(ngModel)]="questionOption.required">Обязательный</mat-slide-toggle>
+    <button mat-icon-button color="warn" (click)="deleteVariant(i)">
+      <mat-icon style="font-size: 24px;">close</mat-icon>
+    </button>
   </div>
-
-  <div *ngIf="simple" class="question-simple">
-    Выпадающий список
-  </div>
-
+  <button mat-button color="primary" (click)="addVariant()">Добавить вариант</button>
+  <mat-slide-toggle [(ngModel)]="questionOption.required">Обязательный</mat-slide-toggle>
 </ng-template>
 
 <ng-template #chooseMany>

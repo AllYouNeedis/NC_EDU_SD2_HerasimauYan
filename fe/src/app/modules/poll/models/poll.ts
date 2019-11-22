@@ -5,10 +5,13 @@ export class Poll {
   title: string;
   submitted: boolean;
   userId: number;
-  questions: QuestionOption[] = [];
-  topics: Topic[] = [];
+  questions: QuestionOption[];
+  topics: Topic[] ;
 
   constructor() {
+    this.title = '';
+    this.questions = [];
+    this.topics = [];
   }
 
   addTopic(topic: Topic) {

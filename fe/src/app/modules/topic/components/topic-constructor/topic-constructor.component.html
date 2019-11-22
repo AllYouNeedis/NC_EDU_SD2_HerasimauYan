@@ -12,8 +12,8 @@
   [cdkDropListConnectedTo]="listPoll"
   (cdkDropListDropped)="drop($event)">
 
-  <div class="menu-list-entity" *ngFor="let component of menuQuestion; let i = index" cdkDrag>
-    <app-question-details [simple]="true" [questionOption]="component"></app-question-details>
+  <div class="menu-list-entity" *ngFor="let question of menuQuestion; let i = index" cdkDrag>
+    {{question.type}}
   </div>
 </div>
 
@@ -25,7 +25,7 @@
   [cdkDropListConnectedTo]="listQuestionMenu"
   (cdkDropListDropped)="drop($event)">
   <div class="example-box" *ngFor="let question of topicModel.questions ; let i = index" cdkDrag>
-    <app-question-details [questionOnly]="true" [questionOption]="question"></app-question-details>
+    <app-question-details [questionOption]="question"></app-question-details>
     <button mat-button color="warn" (click)="topicModel.deleteQuestionOption(i)">del</button>
   </div>
 </div>

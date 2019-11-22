@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {CdkDragDrop, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
 import {QuestionOption} from '../../../question/models/question-option';
 import {PollService} from '../../../../services/poll.service';
 import {Poll} from '../../models/poll';
-import {TopicService} from '../../../../services/topic.service';
 import {Topic} from '../../../topic/models/topic';
 
 @Component({
@@ -15,7 +14,7 @@ import {Topic} from '../../../topic/models/topic';
 export class ConstructorComponent implements OnInit {
   pollModel: Poll;
 
-  constructor(private pollService: PollService, private topicService: TopicService) {
+  constructor(private pollService: PollService) {
   }
 
   ngOnInit(): void {
@@ -31,7 +30,7 @@ export class ConstructorComponent implements OnInit {
 
       if (draggedInData instanceof QuestionOption) {
         this.pollModel.addQuestionOption(QuestionOption.cloneBase(draggedInData));
-        this.changePos( this.pollModel.questions.length - 1, event.currentIndex);
+        this.changePos(this.pollModel.questions.length - 1, event.currentIndex);
       }
 
       if (draggedInData instanceof Topic) {
@@ -53,7 +52,6 @@ export class ConstructorComponent implements OnInit {
 
   deleteQuestionOption(id: number) {
     this.pollModel.deleteQuestionOption(id);
-
   }
 
   submit() {

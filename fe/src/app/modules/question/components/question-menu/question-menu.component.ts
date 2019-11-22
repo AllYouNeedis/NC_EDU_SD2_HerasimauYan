@@ -28,7 +28,6 @@ export class QuestionMenuComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dragDropService.register(this.el);
-    console.log('менюшка вопросиков тут');
   }
 
   dropQuestion(event: CdkDragDrop<any[]>) {
