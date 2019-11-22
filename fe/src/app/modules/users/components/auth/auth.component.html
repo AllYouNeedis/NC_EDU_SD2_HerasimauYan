@@ -1,10 +1,36 @@
-<form [formGroup]="form" class="auth-form">
-  <mat-form-field class="example-full-width">
-    <input matInput formControlName="login" placeholder="Логин">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput formControlName="password" placeholder="Пароль">
-  </mat-form-field>
-  <button mat-button (click)="logIn()">Авторизоваться</button>
-  <button mat-button routerLink="/reg">Зарегестрироваться</button>
-</form>
+<div class="row">
+  <div></div>
+  <div class="form-auth offset-md-4 col-md-4">
+    <article class="card-body">
+      <h4 class="card-title text-center mb-4 mt-1">Добро пожаловать</h4>
+      <hr>
+      <p class="text-success text-center">Авторизуйтесь чтобы создать свой первый опрос!</p>
+      <form [formGroup]="form">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <mat-icon>person</mat-icon> </span>
+            </div>
+            <input formControlName="login" class="form-control" placeholder="Логин" type="email">
+          </div> <!-- input-group.// -->
+        </div> <!-- form-group// -->
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <mat-icon>lock</mat-icon> </span>
+            </div>
+            <input formControlName="password" class="form-control" placeholder="******" type="password">
+          </div> <!-- input-group.// -->
+        </div> <!-- form-group// -->
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block" (click)="logIn()"> Войти </button>
+        </div> <!-- form-group// -->
+        <p class="text-secondary text-center">Не имеете аккаунта?</p>
+        <div class="form-group">
+          <button type="submit" class="btn btn-info btn-block" routerLink="/reg"> Зарегистрироваться </button>
+        </div> <!-- form-group// -->
+      </form>
+    </article>
+  </div>
+</div>
+

@@ -7,7 +7,7 @@ import {UserService} from '../../services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {AuthComponent} from './components/auth/auth.component';
-import {MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import {MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/mate
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
   ],
   providers: [UserService],
   exports: [RegComponent, AuthComponent]
