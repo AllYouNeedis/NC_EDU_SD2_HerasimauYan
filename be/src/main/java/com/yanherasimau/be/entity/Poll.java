@@ -23,7 +23,6 @@ public class Poll {
     @Column(name = "user_id")
     private long userId;
 
-
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "poll_id")
     private List<Question> questions;

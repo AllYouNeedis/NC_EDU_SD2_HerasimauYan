@@ -2,6 +2,7 @@ package com.yanherasimau.be.service.implementation;
 
 import com.yanherasimau.be.entity.PassedPoll;
 import com.yanherasimau.be.entity.Poll;
+import com.yanherasimau.be.repository.PassedPollRepository;
 import com.yanherasimau.be.repository.PollRepository;
 import com.yanherasimau.be.service.PassedPollService;
 import org.hibernate.Hibernate;
@@ -15,26 +16,16 @@ import java.util.Optional;
 @Service
 public class PassedPollServiceImpl implements PassedPollService {
 
-    PollRepository pollRepository;
+    PassedPollRepository passedPollRepository;
 
     @Autowired
-    public PassedPollServiceImpl(PollRepository pollRepository) {
-        this.pollRepository = pollRepository;
+    public PassedPollServiceImpl(PassedPollRepository passedPollRepository) {
+        this.passedPollRepository = passedPollRepository;
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public PassedPoll save(PassedPoll passedPoll) {
-        System.out.println(passedPoll);
-        Optional<Poll> byId = pollRepository.findById(passedPoll.getPollId());
-        if (byId.isPresent()){
-            Poll poll = byId.get();
-            Hibernate.initialize(poll.getPassedPolls());
-            poll.getPassedPolls().add(passedPoll);
-            pollRepository.save(poll);
-        } else {
-
-        }
-        return null;
+        return this.passedPollRepository.save(passedPoll);
     }
 }
