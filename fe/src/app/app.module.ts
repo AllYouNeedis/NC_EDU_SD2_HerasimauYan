@@ -15,6 +15,7 @@ import {MatNativeDateModule} from '@angular/material';
 import {UserRegComponent} from './modules/pages/components/user-reg/user-reg.component';
 import {UserAuthComponent} from './modules/pages/components/user-auth/user-auth.component';
 import {SharedTopicConstructorComponent} from './modules/pages/components/shared-topic-constructor/shared-topic-constructor.component';
+import {PassingComponent} from './modules/poll/components/passing/passing.component';
 
 const appRoutes: Routes = [
   {path: '', component: UserAuthComponent},
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   {path: 'auth', component: UserAuthComponent},
   {path: 'poll-constructor', component: PollConstructorComponent},
   {path: 'topic-constructor', component: SharedTopicConstructorComponent},
+  {path: 'poll/:id', component: PassingComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

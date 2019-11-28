@@ -1,0 +1,32 @@
+<div>
+  <p class="answer-question-text">{{questionOption.title}}</p>
+  <div *ngIf="questionOption.required">
+    <p class="text-danger">*Обязательный вопрос</p>
+  </div>
+</div>
+
+
+<div [ngSwitch]="questionOption.type">
+  <ng-template ngSwitchCase="text"><ng-content *ngTemplateOutlet="text"></ng-content></ng-template>
+  <ng-template ngSwitchCase="chooseOne"><ng-content *ngTemplateOutlet="chooseOne"></ng-content></ng-template>
+</div>
+
+<ng-template #text>
+  <mat-form-field class="input-width">
+    <input matInput type="text" placeholder="Краткий ответ" [(ngModel)]="answer.answerVariants[0].content">
+  </mat-form-field>
+</ng-template>
+
+<ng-template #chooseOne>
+    <section class="example-section">
+      <mat-radio-group [(ngModel)]="answer.answerVariants[0].content">
+        <div *ngFor="let variant of questionOption.questionVariants; let i = index">
+          <mat-radio-button class="example-margin" [value]="variant.content">{{variant.content}}</mat-radio-button>
+        </div>
+      </mat-radio-group>
+    </section>
+</ng-template>
+
+<ng-template #chooseMany>
+
+</ng-template>

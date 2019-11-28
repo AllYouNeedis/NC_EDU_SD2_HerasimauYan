@@ -4,4 +4,5 @@ import com.yanherasimau.be.entity.Topic;
 
 public interface TopicService {
     Topic save(Topic topic);
+    Iterable<Topic> getShared();
 }

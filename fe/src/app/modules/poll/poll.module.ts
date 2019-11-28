@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {BrowserModule} from '@angular/platform-browser';
 import {QuestionsModule} from '../question/questions.module';
-import {MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import {PassingComponent} from './components/passing/passing.component';
@@ -23,7 +23,7 @@ import {TopicModule} from '../topic/topic.module';
     TextFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatDatepickerModule, TopicModule, MatIconModule],
+    MatDatepickerModule, TopicModule, MatIconModule, MatCardModule],
   providers: [TopicService],
   exports: [ConstructorComponent, PassingComponent]
 })

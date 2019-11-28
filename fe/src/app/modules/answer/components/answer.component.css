@@ -1,0 +1,9 @@
+.input-width {
+  max-width: 100%;
+  width: 100%;
+}
+
+.answer-question-text {
+  font-size: 1.5em;
+  margin-bottom: 0;
+}

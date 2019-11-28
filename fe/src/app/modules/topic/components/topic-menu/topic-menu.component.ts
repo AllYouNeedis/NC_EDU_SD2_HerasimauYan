@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Topic} from '../../models/topic';
 import {TopicService} from '../../../../services/topic.service';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
+import {DragDropService} from '../../../../services/drag-drop.service';
 
 @Component({
   selector: 'app-topic-menu',
@@ -9,10 +10,14 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
   styleUrls: ['./topic-menu.component.css'],
 })
 
-export class TopicMenuComponent implements OnInit {
+export class TopicMenuComponent implements OnInit, AfterViewInit {
   menuTopic: Topic[] = [];
 
-  constructor(private topicService: TopicService) {
+  @ViewChild(CdkDropList, {static: false})
+  el: CdkDropList;
+
+  constructor(private topicService: TopicService,
+              private dragDropService: DragDropService) {
   }
 
   ngOnInit(): void {
@@ -28,6 +33,14 @@ export class TopicMenuComponent implements OnInit {
           topic.shared = false;
         });
       });
+  }
+
+  ngAfterViewInit(): void {
+    this.dragDropService.register(this.el);
+  }
+
+  get dropListConnectedTo(): CdkDropList<any>[] {
+    return this.dragDropService.getDropListConnectedToList();
   }
 
 

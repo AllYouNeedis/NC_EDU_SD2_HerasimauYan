@@ -1,8 +1,16 @@
 import {AnswerVariant} from './answer-variant';
-import {QuestionOption} from '../../question/models/question-option';
 
 export class AnswerOption {
+  id: number;
   answerVariants: AnswerVariant[];
-  question: QuestionOption;
+  questionId: number;
+
+  constructor(questionId: number) {
+    this.id = 0;
+
+    this.questionId = questionId;
+    this.answerVariants = [];
+    this.answerVariants.push(new AnswerVariant());
+  }
 }
 

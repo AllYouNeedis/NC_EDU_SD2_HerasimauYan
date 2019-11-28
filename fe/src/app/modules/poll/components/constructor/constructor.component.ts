@@ -1,9 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {CdkDragDrop, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
 import {QuestionOption} from '../../../question/models/question-option';
 import {PollService} from '../../../../services/poll.service';
 import {Poll} from '../../models/poll';
 import {Topic} from '../../../topic/models/topic';
+import {DragDropService} from '../../../../services/drag-drop.service';
 
 @Component({
   selector: 'app-constructor',
@@ -11,15 +12,27 @@ import {Topic} from '../../../topic/models/topic';
   styleUrls: ['./constructor.component.css'],
 })
 
-export class ConstructorComponent implements OnInit {
+export class ConstructorComponent implements OnInit, AfterViewInit {
   pollModel: Poll;
 
-  constructor(private pollService: PollService) {
+  @ViewChild(CdkDropList, {static: false})
+  el: CdkDropList;
+
+  constructor(private pollService: PollService,
+              private dragDropService: DragDropService) {
   }
 
   ngOnInit(): void {
     this.pollModel = new Poll();
     this.pollModel.userId = +localStorage.getItem('user_id');
+  }
+
+  ngAfterViewInit(): void {
+    this.dragDropService.register(this.el);
+  }
+
+  get dropListConnectedTo(): CdkDropList<any>[] {
+    return this.dragDropService.getDropListConnectedToList();
   }
 
   drop(event: CdkDragDrop<any[]>) {
@@ -52,6 +65,10 @@ export class ConstructorComponent implements OnInit {
 
   deleteQuestionOption(id: number) {
     this.pollModel.deleteQuestionOption(id);
+  }
+
+  deleteTopic(id: number) {
+    this.pollModel.deleteTopic(id);
   }
 
   submit() {

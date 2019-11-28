@@ -43,6 +43,7 @@ public class PollServiceImpl implements PollService {
         assert poll != null;
         Hibernate.initialize(poll.getQuestions());
         Hibernate.initialize(poll.getTopics());
+        Hibernate.initialize(poll.getPassedPolls());
         return poll;
     }
 

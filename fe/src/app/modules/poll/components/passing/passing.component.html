@@ -1,0 +1,16 @@
+<div *ngIf="pollModel">
+  <div class="col-md-6 offset-md-3">
+    <mat-card>
+      <mat-card-title class="text-center">{{pollModel.title}}</mat-card-title>
+      <mat-card-content>
+        <div *ngFor="let topic of pollModel.topics ; let i = index">
+          <app-topic-passing [topicModel]="pollModel.topics[i]" [topicAnswer]="pollAnswer.topicAnswers[i]">
+          </app-topic-passing>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card-actions>
+      <button mat-button (click)="submit()">Отправить ответ</button>
+    </mat-card-actions>
+  </div>
+</div>

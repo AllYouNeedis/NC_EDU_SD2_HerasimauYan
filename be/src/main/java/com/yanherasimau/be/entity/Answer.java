@@ -3,6 +3,7 @@ package com.yanherasimau.be.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -13,19 +14,12 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
-    @JoinColumn(name = "question_id", nullable = false)
-    private Question question;
+    @Column(name = "question_id")
+    private long questionId;
 
-    @Column(name = "answer_text")
-    private String answerText;
-
-    @Column(name = "passed_poll_id", nullable = false)
-    private long passedPollId;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "answer_id")
-    private List<AnswerVariant> answerVariants;
+    private List<AnswerVariant> answerVariants = new ArrayList<>();
 
     public Answer() {
     }

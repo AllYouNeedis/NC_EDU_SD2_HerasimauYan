@@ -12,8 +12,9 @@ import java.util.List;
 public class Poll {
     private long id;
     private String title;
-    private long submitted;
+    private boolean submitted;
     private long userId;
     private List<Question> questions;
     private List<Topic> topics;
+    private List<PassedPoll> passedPolls;
 }

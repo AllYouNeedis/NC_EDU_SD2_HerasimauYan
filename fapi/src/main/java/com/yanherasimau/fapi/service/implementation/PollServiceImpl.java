@@ -19,4 +19,9 @@ public class PollServiceImpl implements PollService {
         HttpEntity<Poll> request = new HttpEntity<>(poll);
         return restTemplate.postForObject(apiRoute, request, Poll.class);
     }
+
+    @Override
+    public Poll getById(long id) {
+        return restTemplate.getForObject(apiRoute + "/" + id, Poll.class);
+    }
 }

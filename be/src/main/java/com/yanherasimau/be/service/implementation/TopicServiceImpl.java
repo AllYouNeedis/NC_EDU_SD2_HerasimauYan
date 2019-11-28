@@ -19,4 +19,9 @@ public class TopicServiceImpl implements TopicService {
     public Topic save(Topic topic) {
         return topicRepository.save(topic);
     }
+
+    @Override
+    public Iterable<Topic> getShared() {
+        return topicRepository.findAllByShared(true);
+    }
 }

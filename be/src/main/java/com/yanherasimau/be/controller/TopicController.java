@@ -3,10 +3,7 @@ package com.yanherasimau.be.controller;
 import com.yanherasimau.be.entity.Topic;
 import com.yanherasimau.be.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/topics")
@@ -23,4 +20,8 @@ public class TopicController {
         return topicService.save(topic);
     }
 
+    @GetMapping("/all/shared")
+    public Iterable<Topic> getShared() {
+        return topicService.getShared();
+    }
 }

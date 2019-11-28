@@ -26,8 +26,8 @@ public class PollController {
         return pollService.getAll();
     }
 
-    @GetMapping
-    public Poll get(@RequestParam long id) {
+    @GetMapping("/{id}")
+    public Poll get(@PathVariable(name = "id") long id) {
         return pollService.getById(id);
     }
 }

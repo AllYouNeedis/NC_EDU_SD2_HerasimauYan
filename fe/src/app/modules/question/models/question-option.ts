@@ -1,6 +1,7 @@
 import {QuestionVariant} from './question-variant';
 
 export class QuestionOption {
+  id?: number;
   title: string;
   type: string;
   questionVariants: QuestionVariant[];
@@ -14,6 +15,7 @@ export class QuestionOption {
 
   static cloneBase(base: QuestionOption): QuestionOption {
     const result = new QuestionOption(base.type);
+    result.id = base.id;
     result.questionVariants = [];
     base.questionVariants.forEach( questionVariant => {
       result.questionVariants.push(new QuestionVariant(questionVariant.content));

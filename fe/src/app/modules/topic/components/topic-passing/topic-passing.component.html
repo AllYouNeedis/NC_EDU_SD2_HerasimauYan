@@ -1,0 +1,4 @@
+<div *ngFor="let answer of topicModel.questions ; let i = index">
+  <app-answer [questionOption]="topicModel.questions[i]" [answer]="topicAnswer.answers[i]">
+  </app-answer>
+</div>

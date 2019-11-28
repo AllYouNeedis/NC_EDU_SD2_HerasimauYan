@@ -1,11 +1,9 @@
 package com.yanherasimau.be.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,7 +18,7 @@ public class Poll {
     private String title;
 
     @Column(name = "submitted", nullable = false)
-    private long submitted;
+    private boolean submitted;
 
     @Column(name = "user_id")
     private long userId;
@@ -34,8 +32,8 @@ public class Poll {
     @JoinColumn(name = "poll_id")
     private List<Topic> topics;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pollId")
-//    private List<PassedPoll> passedPolls;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pollId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PassedPoll> passedPolls;
 
     public Poll() {
     }
