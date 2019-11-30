@@ -3,7 +3,13 @@ export class AnswerVariant {
   content: string;
 
   constructor() {
-    this.id = 0;
     this.content = '';
+  }
+
+  static cloneBase(base: AnswerVariant): AnswerVariant {
+    const result = new AnswerVariant();
+    result.id = base.id;
+    result.content = base.content;
+    return result;
   }
 }

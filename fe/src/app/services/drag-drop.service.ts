@@ -15,4 +15,8 @@ export class DragDropService {
   getDropListConnectedToList(): CdkDropList<any>[] {
     return this.dropListConnectedToList;
   }
+
+  delete(cdkDropList: CdkDropList): void {
+    this.dropListConnectedToList.splice(this.dropListConnectedToList.indexOf(cdkDropList), 1);
+  }
 }

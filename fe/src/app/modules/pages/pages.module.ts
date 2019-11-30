@@ -12,6 +12,9 @@ import {QuestionsModule} from '../question/questions.module';
 import {UserAuthComponent} from './components/user-auth/user-auth.component';
 import {SharedTopicConstructorComponent} from './components/shared-topic-constructor/shared-topic-constructor.component';
 import {TopicModule} from '../topic/topic.module';
+import {BrowserModule} from '@angular/platform-browser';
+import {StatisticComponent} from './components/statistic/statistic.component';
+import {StatisticModule} from '../statistic/statistic.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import {TopicModule} from '../topic/topic.module';
     HomeComponent,
     PollConstructorComponent,
     UserAuthComponent,
-    SharedTopicConstructorComponent
+    SharedTopicConstructorComponent,
+    StatisticComponent
   ],
   imports: [
     HeaderModule,
@@ -29,15 +33,19 @@ import {TopicModule} from '../topic/topic.module';
     FormsModule,
     PollModule,
     QuestionsModule,
-    TopicModule
+    TopicModule,
+    BrowserModule,
+    StatisticModule
   ],
   providers: [],
-  exports: [NotFoundComponent,
+  exports: [
+    NotFoundComponent,
     UserRegComponent,
     HomeComponent,
     PollConstructorComponent,
     UserAuthComponent,
-    SharedTopicConstructorComponent
+    SharedTopicConstructorComponent,
+    StatisticComponent
   ]
 })
 

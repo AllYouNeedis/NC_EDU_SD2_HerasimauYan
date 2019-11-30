@@ -1,0 +1,17 @@
+<div>
+  <mat-card class="answer-content">
+    <mat-card-title>{{questionAnswerModel.question.title}}</mat-card-title>
+    <mat-card-subtitle>Ответов: {{this.questionAnswerModel.answers.length}}</mat-card-subtitle>
+    <mat-card-content>
+      <div class="diagram-container">
+        <ngx-charts-pie-chart
+          [results]="statisticModels"
+          [legend]="true"
+          [labels]="true"
+          [legendTitle]="legendTitle">
+        </ngx-charts-pie-chart>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+

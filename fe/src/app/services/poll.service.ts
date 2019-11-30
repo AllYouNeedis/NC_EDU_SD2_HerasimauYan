@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Poll} from '../modules/poll/models/poll';
 import {Observable} from 'rxjs';
 
@@ -18,5 +18,15 @@ export class PollService {
 
   getPollById(id: number): Observable<any> {
     return this.http.get(this.pollsUrl + '/' + id);
+  }
+
+  getPollsBySubmitted(id: string, submitted: boolean): Observable<any> {
+    const params = new HttpParams({
+      fromObject: {
+        id,
+        submitted: submitted.toString()
+      }
+    });
+    return this.http.get(this.pollsUrl, {params});
   }
 }

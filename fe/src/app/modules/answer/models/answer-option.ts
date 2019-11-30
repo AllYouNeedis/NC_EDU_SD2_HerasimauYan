@@ -6,11 +6,18 @@ export class AnswerOption {
   questionId: number;
 
   constructor(questionId: number) {
-    this.id = 0;
-
     this.questionId = questionId;
     this.answerVariants = [];
     this.answerVariants.push(new AnswerVariant());
+  }
+
+  static cloneBase(base: AnswerOption): AnswerOption {
+    const result: AnswerOption = new AnswerOption(base.questionId);
+    result.answerVariants = [];
+    base.answerVariants.forEach(answerVariant => {
+      result.answerVariants.push(AnswerVariant.cloneBase(answerVariant));
+    });
+    return result;
   }
 }
 

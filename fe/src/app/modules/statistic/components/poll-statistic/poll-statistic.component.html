@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-8 offset-md-2" *ngIf="inited">
+    <mat-card class="mb-4">
+      <mat-card-title class="title text-center">{{pollModel.title}}</mat-card-title>
+      <mat-card-content>
+        <p>Ответов: {{passedNum}}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <div *ngFor="let questionAnswerModel of questionAnswerModels ; let i = index" class="mb-4">
+      <div [ngSwitch]="questionAnswerModel.question.type">
+        <ng-template ngSwitchCase="text">
+          <app-text-answer-statistic [questionAnswerModel]="questionAnswerModel"></app-text-answer-statistic>
+        </ng-template>
+        <ng-template ngSwitchCase="chooseOne">
+          <app-pie-statistic [questionAnswerModel]="questionAnswerModel"></app-pie-statistic>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

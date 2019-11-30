@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class PollServiceImpl implements PollService {
 
@@ -47,5 +49,8 @@ public class PollServiceImpl implements PollService {
         return poll;
     }
 
-
+    @Override
+    public List<Poll> getBySubmitted(long id, boolean submitted) {
+        return pollRepository.getBySubmitted(id, submitted);
+    }
 }

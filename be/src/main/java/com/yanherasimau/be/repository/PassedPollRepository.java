@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PassedPollRepository extends PagingAndSortingRepository<PassedPoll, Long> {
+    Iterable<PassedPoll> findAllByPollId(long pollId);
 }

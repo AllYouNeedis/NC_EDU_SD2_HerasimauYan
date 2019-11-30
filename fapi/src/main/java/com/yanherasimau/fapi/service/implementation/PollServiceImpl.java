@@ -6,6 +6,10 @@ import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PollServiceImpl implements PollService {
     private final String apiRoute = "http://localhost:8081/api/polls";
@@ -23,5 +27,14 @@ public class PollServiceImpl implements PollService {
     @Override
     public Poll getById(long id) {
         return restTemplate.getForObject(apiRoute + "/" + id, Poll.class);
+    }
+
+    @Override
+    public List<Poll> getBySubmitted(long id, boolean submitted) {
+        Poll[] polls = restTemplate.getForObject(apiRoute + "?id="+id+"&submitted="+submitted, Poll[].class);
+        if (polls != null)
+            return  Arrays.stream(polls).collect(Collectors.toList());
+        else
+            return null;
     }
 }

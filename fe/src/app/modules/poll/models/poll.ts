@@ -3,6 +3,7 @@ import {Topic} from '../../topic/models/topic';
 import {PassedPoll} from './passed-poll';
 
 export class Poll {
+  id: number;
   title: string;
   submitted: boolean;
   userId: number;
@@ -18,16 +19,23 @@ export class Poll {
 
   static cloneBase(base: Poll): Poll {
     const result = new Poll();
+    result.id = base.id;
     result.title = base.title;
     result.submitted = base.submitted;
     result.userId = base.userId;
     result.questions = [];
+    result.topics = [];
+    result.passedPolls = [];
     base.questions.forEach( question => {
       result.questions.push(QuestionOption.cloneBase(question));
     });
     base.topics.forEach( topic => {
       result.topics.push(Topic.cloneBase(topic));
     });
+    base.passedPolls.forEach( passedPoll => {
+      result.passedPolls.push(PassedPoll.cloneBase(passedPoll));
+    });
+
     return result;
   }
 

@@ -6,6 +6,12 @@ import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 @Service
 public class PassedPollServiceImpl implements PassedPollService {
     private final String apiRoute = "http://localhost:8081/api/passedPolls";
@@ -15,5 +21,14 @@ public class PassedPollServiceImpl implements PassedPollService {
     public PassedPoll save(PassedPoll passedPoll) {
         HttpEntity<PassedPoll> request = new HttpEntity<>(passedPoll);
         return restTemplate.postForObject(apiRoute, request, PassedPoll.class);
+    }
+
+    @Override
+    public List<PassedPoll> getPassedPollsByPollId(long pollId) {
+        PassedPoll[] passedPolls = restTemplate.getForObject(apiRoute+"?pollId="+pollId, PassedPoll[].class);
+        if (passedPolls != null)
+            return  Arrays.stream(passedPolls).collect(Collectors.toList());
+        else
+            return null;
     }
 }

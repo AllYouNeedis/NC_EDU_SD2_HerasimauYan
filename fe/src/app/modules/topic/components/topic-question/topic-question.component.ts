@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnDestroy, Output, ViewChild} from '@angular/core';
 import {Topic} from '../../models/topic';
 import {CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {QuestionOption} from '../../../question/models/question-option';
@@ -10,7 +10,7 @@ import {DragDropService} from '../../../../services/drag-drop.service';
   styleUrls: ['./topic-question.component.css'],
 })
 
-export class TopicQuestionComponent implements AfterViewInit, AfterViewInit {
+export class TopicQuestionComponent implements AfterViewInit, AfterViewInit, OnDestroy {
   @Input()
   @Output()
   private topicModel: Topic;
@@ -27,6 +27,10 @@ export class TopicQuestionComponent implements AfterViewInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dragDropService.register(this.el);
+  }
+
+  ngOnDestroy(): void {
+    this.dragDropService.delete(this.el);
   }
 
   drop(event: CdkDragDrop<any[]>) {

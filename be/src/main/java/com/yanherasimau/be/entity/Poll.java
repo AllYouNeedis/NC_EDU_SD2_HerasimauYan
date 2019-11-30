@@ -36,4 +36,10 @@ public class Poll {
 
     public Poll() {
     }
+
+    public Poll(long id, String title, long userId) {
+        this.id = id;
+        this.title = title;
+        this.userId = userId;
+    }
 }

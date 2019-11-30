@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {CdkDragDrop, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
 import {QuestionOption} from '../../../question/models/question-option';
 import {PollService} from '../../../../services/poll.service';
@@ -12,8 +12,11 @@ import {DragDropService} from '../../../../services/drag-drop.service';
   styleUrls: ['./constructor.component.css'],
 })
 
-export class ConstructorComponent implements OnInit, AfterViewInit {
+export class ConstructorComponent implements OnInit, AfterContentInit {
   pollModel: Poll;
+  @Input()
+  pollId: string;
+  inited: boolean;
 
   @ViewChild(CdkDropList, {static: false})
   el: CdkDropList;
@@ -23,11 +26,23 @@ export class ConstructorComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.pollModel = new Poll();
-    this.pollModel.userId = +localStorage.getItem('user_id');
+    const userId = +localStorage.getItem('user_id');
+    this.inited = false;
+    if (this.pollId === 'new') {
+      this.pollModel = new Poll();
+      this.pollModel.userId = userId;
+      this.inited = true;
+    } else {
+      this.pollService.getPollById(+this.pollId)
+        .subscribe((data: Poll) => {
+        this.pollModel = Poll.cloneBase(data);
+        console.log(this.pollModel);
+        this.inited = true;
+      }, error => console.log(error));
+    }
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
     this.dragDropService.register(this.el);
   }
 
@@ -73,6 +88,11 @@ export class ConstructorComponent implements OnInit, AfterViewInit {
 
   submit() {
     this.pollModel.submitted = true;
+    this.pollService.addPoll(this.pollModel);
+  }
+
+  saveAsDraft() {
+    this.pollModel.submitted = false;
     this.pollService.addPoll(this.pollModel);
   }
 }

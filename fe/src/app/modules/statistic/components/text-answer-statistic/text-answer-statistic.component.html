@@ -1,0 +1,18 @@
+<div>
+  <mat-card class="answer-content">
+    <mat-card-title>{{questionAnswerModel.question.title}}</mat-card-title>
+    <mat-card-subtitle>Ответов: {{this.questionAnswerModel.answers.length}}</mat-card-subtitle>
+    <mat-card-content>
+      <div class="diagram-container">
+        <ngx-charts-bar-vertical
+          [results]="statisticModels"
+          [legend]="true"
+          [yAxis]="true"
+          [xAxis]="true"
+          [legendTitle]="legendTitle"
+          [barPadding]="barPadding">
+        </ngx-charts-bar-vertical>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

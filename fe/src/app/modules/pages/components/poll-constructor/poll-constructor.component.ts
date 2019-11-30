@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-poll-constructor',
@@ -6,8 +7,11 @@ import {Component} from '@angular/core';
 })
 
 export class PollConstructorComponent {
+  pollId: string;
 
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.pollId = activatedRoute.snapshot.params.id;
+    console.log(this.pollId);
   }
 
 }
