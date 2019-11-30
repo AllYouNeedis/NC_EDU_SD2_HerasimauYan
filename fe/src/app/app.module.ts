@@ -17,6 +17,7 @@ import {UserAuthComponent} from './modules/pages/components/user-auth/user-auth.
 import {SharedTopicConstructorComponent} from './modules/pages/components/shared-topic-constructor/shared-topic-constructor.component';
 import {PassingComponent} from './modules/poll/components/passing/passing.component';
 import {StatisticComponent} from './modules/pages/components/statistic/statistic.component';
+import {PollPassingPageComponent} from './modules/pages/components/poll-passing-page/poll-passing-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: UserAuthComponent},
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
   {path: 'auth', component: UserAuthComponent},
   {path: 'poll-constructor/:id', component: PollConstructorComponent},
   {path: 'topic-constructor', component: SharedTopicConstructorComponent},
-  {path: 'poll/:id', component: PassingComponent},
+  {path: 'poll/:id', component: PollPassingPageComponent},
   {path: 'statistic/:id', component: StatisticComponent},
   {path: '**', component: NotFoundComponent}
 ];

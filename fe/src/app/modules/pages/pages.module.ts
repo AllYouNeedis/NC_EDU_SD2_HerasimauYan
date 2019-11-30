@@ -15,6 +15,7 @@ import {TopicModule} from '../topic/topic.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {StatisticComponent} from './components/statistic/statistic.component';
 import {StatisticModule} from '../statistic/statistic.module';
+import {PollPassingPageComponent} from './components/poll-passing-page/poll-passing-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {StatisticModule} from '../statistic/statistic.module';
     PollConstructorComponent,
     UserAuthComponent,
     SharedTopicConstructorComponent,
-    StatisticComponent
+    StatisticComponent,
+    PollPassingPageComponent
   ],
   imports: [
     HeaderModule,
@@ -45,7 +47,8 @@ import {StatisticModule} from '../statistic/statistic.module';
     PollConstructorComponent,
     UserAuthComponent,
     SharedTopicConstructorComponent,
-    StatisticComponent
+    StatisticComponent,
+    PollPassingPageComponent
   ]
 })
 

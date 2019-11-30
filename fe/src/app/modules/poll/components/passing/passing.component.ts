@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PollService} from '../../../../services/poll.service';
 import {PassedPoll} from '../../models/passed-poll';
 import {ActivatedRoute} from '@angular/router';
@@ -13,19 +13,17 @@ import {PassedPollService} from '../../../../services/passed-poll.service';
 })
 
 export class PassingComponent implements OnInit {
+  @Input()
+  pollId: number;
   pollModel: Poll;
   pollAnswer: PollAnswer;
-  id: number;
 
   constructor(private pollService: PollService,
-              private activatedRoute: ActivatedRoute,
               private passedPollService: PassedPollService) {
-    this.id = activatedRoute.snapshot.params.id;
-    console.log(this.id);
   }
 
   ngOnInit(): void {
-    this.pollService.getPollById(this.id).subscribe((data: Poll) => {
+    this.pollService.getPollById(this.pollId).subscribe((data: Poll) => {
       this.pollModel = Poll.cloneBase(data);
       console.log(this.pollModel);
       this.pollAnswer = new PollAnswer();
@@ -37,7 +35,7 @@ export class PassingComponent implements OnInit {
 
   submit() {
     console.log(this.pollAnswer);
-    const passedPollModel = new PassedPoll(this.id);
+    const passedPollModel = new PassedPoll(this.pollId);
     this.pollAnswer.topicAnswers.forEach(topic => {
       topic.answers.forEach(answer => {
         passedPollModel.addAnswer(answer);
