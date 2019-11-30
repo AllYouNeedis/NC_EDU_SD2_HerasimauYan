@@ -1,7 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PassedPoll} from '../../../poll/models/passed-poll';
-import {PassedPollService} from '../../../../services/passed-poll.service';
-import {errorObject} from 'rxjs/internal-compatibility';
 import {QuestionAnswerStatistic} from '../../models/question-answer-statistic';
 import {PollService} from '../../../../services/poll.service';
 import {Poll} from '../../../poll/models/poll';
@@ -22,7 +20,8 @@ export class PollStatisticComponent implements OnInit {
   questions: QuestionOption[];
   inited = false;
 
-  constructor(private pollService: PollService) {}
+  constructor(private pollService: PollService) {
+  }
 
   ngOnInit(): void {
     this.pollService.getPollById(this.pollId)
@@ -56,7 +55,7 @@ export class PollStatisticComponent implements OnInit {
     this.pollModel.questions.forEach((question) => {
       this.questionAnswerModels.push(new QuestionAnswerStatistic(question));
     });
-    this.pollModel.topics.forEach((topic) =>{
+    this.pollModel.topics.forEach((topic) => {
       topic.questions.forEach((question) => {
         this.questionAnswerModels.push(new QuestionAnswerStatistic(question));
       });

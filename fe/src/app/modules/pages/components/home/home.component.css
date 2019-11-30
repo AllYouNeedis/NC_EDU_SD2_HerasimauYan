@@ -1,0 +1,24 @@
+.fixed-button {
+  position: absolute;
+  bottom: 3%;
+  right: 3%;
+  display: block;
+  width: 48px;
+  height: 48px;
+}
+
+.fixed-button button {
+  border-radius: 50%;
+  background-color: white;
+  border-width: 0;
+  width: 48px;
+  height: 48px;
+  color: white;
+}
+
+.fixed-button mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: dodgerblue;
+}

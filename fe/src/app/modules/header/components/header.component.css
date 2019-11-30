@@ -1,0 +1,13 @@
+.header {
+  min-height: 100px;
+  background-color: #238ecc;
+}
+
+.header button {
+  min-height: 100px;
+}
+
+.header mat-icon {
+  font-size: 3em;
+  padding-bottom: 1em;
+}

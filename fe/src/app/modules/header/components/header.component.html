@@ -1,5 +1,14 @@
-<div>
-  <h2>header</h2>
-  <button mat-button color="primary" (click)="logOut()">Выход</button>
+<div class="container-fluid">
+  <div class="row flex-md-nowrap header">
+    <div class="col-md-1">
+      <button mat-button class="btn" (click)="goHome()">
+        <mat-icon>home</mat-icon>
+        <span class="m-md-4">Домой</span>
+      </button>
+    </div>
+    <div class="col-md-1 offset-md-10">
+      <button mat-button class="btn btn-block" (click)="logOut()">Выход</button>
+    </div>
+  </div>
 </div>
 

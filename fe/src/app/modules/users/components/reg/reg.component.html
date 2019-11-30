@@ -1,34 +1,66 @@
-<form #regForm="ngForm">
-  <div class="regForm-group">
-    <label>Логин</label>
-    <input class="regForm-control" name="login" ngModel>
+<div class="container-fluid">
+  <div class="row flex-xl-nowrap">
+    <div class="form-reg offset-md-4 col-md-4">
+      <article class="card-body">
+        <h4 class="card-title text-center">Форма регистрации</h4>
+        <hr>
+        <form [formGroup]="form">
+          <div class="form-group">
+            <div class="input-group">
+              <input formControlName="login" class="form-control" placeholder="Логин" type="text">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <input formControlName="password" class="form-control" placeholder="Пароль" type="text">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <input formControlName="email" class="form-control" placeholder="Email" type="email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <input formControlName="surname" class="form-control" placeholder="Фамилия" type="text">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <input formControlName="name" class="form-control" placeholder="Имя" type="text">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <input formControlName="patronymic" class="form-control" placeholder="Отчество" type="text">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <input formControlName="birthday" class="form-control regForm-dp-control"
+                     placeholder="День рождения / yyyy-mm-dd"
+                     name="dp" ngbDatepicker #d="ngbDatepicker"
+                     [minDate]="{year: 1970, month: 1, day: 1}"
+                     [maxDate]="{year: 2010, month: 12, day: 31}">
+              <div class="input-group-append">
+                <button (click)="d.toggle()">
+                  <mat-icon>calendar_today</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" (click)="regUser()">Зарегистрироваться</button>
+          </div>
+        </form>
+      </article>
+    </div>
   </div>
-  <div class="regForm-group">
-    <label>Пароль</label>
-    <input class="regForm-control" name="password" ngModel>
-  </div>
-  <div class="regForm-group">
-    <label>Email</label>
-    <input class="regForm-control" name="email" ngModel>
-  </div>
-  <div class="regForm-group">
-    <label>Фамилия</label>
-    <input class="regForm-control" name="surname" ngModel>
-  </div>
-  <div class="regForm-group">
-    <label>Имя</label>
-    <input class="regForm-control" name="name" ngModel>
-  </div>
-  <div class="regForm-group">
-    <label>Отчество</label>
-    <input class="regForm-control" name="patronymic" ngModel>
-  </div>
-  <div class="regForm-group">
-    <label>Дата рождения</label>
-    <input class="regForm-dp-control" placeholder="yyyy-mm-dd"
-           name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" ngModel>
-  </div>
-  <div class="regForm-group">
-    <button (click)="regUser(regForm)">Зарегистрироваться</button>
-  </div>
-</form>
+</div>

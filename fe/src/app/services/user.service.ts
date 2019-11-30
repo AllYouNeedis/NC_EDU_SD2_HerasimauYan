@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 
 import {User} from '../modules/users/models/user';
+import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -11,25 +12,18 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  addUser(user: User) {
-    this.http.post(this.usersUrl, user).subscribe((data: User) => console.log(data), error => console.log(error));
+  addUser(user: User): Observable<any> {
+    return this.http.post(this.usersUrl, user);
   }
 
-  logIn(login: string, password: string) {
+  logIn(login: string, password: string): Observable<any> {
     const params = new HttpParams({
       fromObject: {
         login,
         password
       }
     });
-    this.http.get(this.usersUrl + '/auth', {params})
-      .subscribe((response: any) => {
-          console.log(response);
-          localStorage.setItem('user_id', response.id);
-        },
-        error => {
-          console.log(error);
-        });
+    return this.http.get(this.usersUrl + '/auth', {params});
   }
 
   logOut() {

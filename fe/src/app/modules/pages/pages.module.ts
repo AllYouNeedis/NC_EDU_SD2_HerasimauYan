@@ -16,6 +16,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {StatisticComponent} from './components/statistic/statistic.component';
 import {StatisticModule} from '../statistic/statistic.module';
 import {PollPassingPageComponent} from './components/poll-passing-page/poll-passing-page.component';
+import {MatButtonModule, MatIconModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import {PollPassingPageComponent} from './components/poll-passing-page/poll-pass
     QuestionsModule,
     TopicModule,
     BrowserModule,
-    StatisticModule
+    StatisticModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   exports: [

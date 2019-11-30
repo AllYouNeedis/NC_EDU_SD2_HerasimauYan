@@ -1,11 +1,16 @@
 <app-header></app-header>
 <div class="container-fluid">
   <div class="row flex-xl-nowrap">
-    <div class="col-md-4 offset-md-1">
+    <div class="col-md-4 offset-md-1 mt-3">
       <app-submitted-poll-list></app-submitted-poll-list>
     </div>
-    <div class="col-md-4 offset-md-2">
+    <div class="col-md-4 offset-md-2 mt-3">
       <app-unsubmitted-poll-list></app-unsubmitted-poll-list>
+    </div>
+    <div class="fixed-button m-0 p-0">
+      <button class="m-0 p-0" (click)="createPoll()">
+        <mat-icon class="m-0 p-0">add</mat-icon>
+      </button>
     </div>
   </div>
 </div>

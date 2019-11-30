@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {UserService} from '../../../../services/user.service';
 import {User} from '../../models/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-reg',
@@ -9,24 +10,36 @@ import {User} from '../../models/user';
   styleUrls: [ './reg.component.css' ]
 })
 
-export class RegComponent {
+export class RegComponent implements OnInit {
   defaultRole = 'USER';
-  constructor(private userService: UserService) {}
+  form: FormGroup;
+  constructor(private userService: UserService,
+              private router: Router) {}
 
-  regUser(form: NgForm) {
-    this.userService.addUser(this.getUserFromForm(form));
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      login: new FormControl(),
+      password: new FormControl(),
+      email: new FormControl(),
+      surname: new FormControl(),
+      name: new FormControl(),
+      patronymic: new FormControl(),
+      birthday: new FormControl()
+    });
   }
-  getDate(form: NgForm): string {
-    return form.value.dp.year + '-' + form.value.dp.month + '-' + form.value.dp.day;
+
+  parseDate(dateStruct): string {
+    return dateStruct.year + '-' + dateStruct.month + '-' + dateStruct.day;
   }
-  getUserFromForm(form: NgForm): User {
-    const login = form.value.login;
-    const pas = form.value.password;
-    const email = form.value.email;
-    const name = form.value.name;
-    const surname = form.value.surname;
-    const patronymic = form.value.patronymic;
-    const birthday = this.getDate(form);
-    return new User(login, pas, email, surname, name, patronymic, birthday, this.defaultRole);
+
+  regUser() {
+    const inp = this.form.value;
+    const birthday = this.parseDate(inp.birthday);
+    const user = new User(inp.login, inp.password, inp.email, inp.surname, inp.name, inp.patronymic, birthday, this.defaultRole);
+    this.userService.addUser(user)
+      .subscribe((data: User) => {
+        console.log(data);
+        this.router.navigate(['/auth']);
+      }, error => console.log(error));
   }
 }
