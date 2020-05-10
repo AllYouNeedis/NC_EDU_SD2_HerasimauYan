@@ -5,6 +5,7 @@ import {PollService} from '../../../../services/poll.service';
 import {Poll} from '../../models/poll';
 import {Topic} from '../../../topic/models/topic';
 import {DragDropService} from '../../../../services/drag-drop.service';
+import {StorageService} from '../../../../services/storage/storage.service';
 
 @Component({
   selector: 'app-constructor',
@@ -22,11 +23,12 @@ export class ConstructorComponent implements OnInit, AfterContentInit {
   el: CdkDropList;
 
   constructor(private pollService: PollService,
-              private dragDropService: DragDropService) {
+              private dragDropService: DragDropService,
+              private storage: StorageService) {
   }
 
   ngOnInit(): void {
-    const userId = +localStorage.getItem('user_id');
+    const userId = this.storage.getCurrentUser().id;
     this.inited = false;
     if (this.pollId === 'new') {
       this.pollModel = new Poll();

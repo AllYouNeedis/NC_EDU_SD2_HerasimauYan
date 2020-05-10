@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService {
     public User auth(String login, String password) {
         return this.userRepository.findByLoginAndPassword(login, password);
     }
+
+    @Override
+    public User getByLogin(String login) {
+        return this.userRepository.findByLogin(login);
+    }
 }

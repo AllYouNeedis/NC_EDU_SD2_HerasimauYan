@@ -4,6 +4,6 @@ import com.yanherasimau.fapi.entity.User;
 
 public interface UserService {
     User getById(long id);
+    User findByLogin(String login);
     User saveUser(User user);
-    User auth(String login, String password);
 }

@@ -6,6 +6,7 @@ import {Poll} from '../../models/poll';
 import {Topic} from '../../../topic/models/topic';
 import {DragDropService} from '../../../../services/drag-drop.service';
 import {Router} from '@angular/router';
+import {StorageService} from '../../../../services/storage/storage.service';
 
 @Component({
   selector: 'app-submitted-poll-list',
@@ -17,11 +18,12 @@ export class SubmittedPollListComponent implements OnInit {
   polls: Poll[];
 
   constructor(private pollService: PollService,
-              private router: Router) {}
+              private router: Router,
+              private storage: StorageService) {}
 
   ngOnInit(): void {
-    const userId = localStorage.getItem('user_id');
-    this.pollService.getPollsBySubmitted(userId, true)
+    const userId = this.storage.getCurrentUser().id;
+    this.pollService.getPollsBySubmitted(userId.toString(), true)
       .subscribe((data: Poll[]) => {
         this.polls = data;
     }, error => console.log(error));

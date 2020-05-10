@@ -9,4 +9,5 @@ public interface UserService {
     List<User> getPage(Integer page, Integer size);
     User saveUser(User user);
     User auth(String login, String password);
+    User getByLogin(String login);
 }

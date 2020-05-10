@@ -18,9 +18,14 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public User get(@RequestParam long id) {
-        return userService.getById(id);
+//    @GetMapping
+//    public User get(@RequestParam long id) {
+//        return userService.getById(id);
+//    }
+
+    @GetMapping("/login/{login}")
+    public User getUserByLogin(@PathVariable String login) {
+        return userService.getByLogin(login);
     }
 
     @GetMapping("/all")
@@ -28,10 +33,10 @@ public class UserController {
         return userService.getPage(page, size);
     }
 
-    @GetMapping("/auth")
-    public User auth(@RequestParam(name = "login") String login, @RequestParam(name = "password") String password) {
-        return userService.auth(login, password);
-    }
+//    @GetMapping("/auth")
+//    public User auth(@RequestParam(name = "login") String login, @RequestParam(name = "password") String password) {
+//        return userService.auth(login, password);
+//    }
 
     @PostMapping
     public User post(@RequestBody User user) {

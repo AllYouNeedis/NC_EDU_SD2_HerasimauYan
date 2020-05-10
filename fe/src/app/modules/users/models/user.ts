@@ -1,5 +1,5 @@
 export class User {
-  private id: number;
+  id: number;
   constructor(
     private login: string,
     private password: string,
@@ -8,7 +8,7 @@ export class User {
     private name?: string,
     private patronymic?: string,
     private birthday?: string,
-    private userRole?: string
+    public userRole?: string
   ) {}
 }
 
