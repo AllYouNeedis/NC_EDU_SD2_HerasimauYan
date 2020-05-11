@@ -1,9 +1,8 @@
 .example-list {
   max-width: 100%;
-  border: solid 1px #ccc;
   min-height: 60px;
   display: block;
-  background: white;
+  background: lightyellow;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -17,7 +16,6 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  cursor: move;
   background: white;
   font-size: 14px;
 }

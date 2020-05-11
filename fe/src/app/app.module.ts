@@ -23,7 +23,7 @@ import {CanActivateNotLoginPages} from './services/security/can-activate-not-log
 import {CanActivateAdminPagesService} from './services/security/can-activate-admin-pages.service';
 
 const appRoutes: Routes = [
-  {path: '', component: UserAuthComponent},
+  {path: '', component: UserAuthComponent, canActivate: [CanActivateNotLoginPages]},
   {path: 'home', component: HomeComponent, canActivate: [CanActivateLoginPagesService]},
   {path: 'reg', component: UserRegComponent, canActivate: [CanActivateNotLoginPages]},
   {path: 'auth', component: UserAuthComponent, canActivate: [CanActivateNotLoginPages]},

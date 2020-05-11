@@ -17,7 +17,7 @@ export class CanActivateNotLoginPages implements CanActivate {
     if (!this.auth.isAuthenticatedAsUser() && !this.auth.isAuthenticatedAsAdmin()) {
       return true;
     }
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
     return false;
   }
 

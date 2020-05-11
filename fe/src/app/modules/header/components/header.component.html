@@ -1,13 +1,26 @@
 <div class="container-fluid">
   <div class="row flex-md-nowrap header">
+
     <div class="col-md-1">
       <button mat-button class="btn" (click)="goHome()">
         <mat-icon>home</mat-icon>
         <span class="m-md-4">Домой</span>
       </button>
     </div>
-    <div class="col-md-1 offset-md-10">
-      <button mat-button class="btn btn-block" (click)="logOut()">Выход</button>
+
+    <div *ngIf="auth.isAuthenticatedAsAdmin()">
+      <div class="col-md-2">
+        <button mat-button class="btn btn-block" (click)="logOut()">Создать тему</button>
+      </div>
+      <div class="col-md-1 offset-md-7 ">
+        <button mat-button class="btn btn-block" (click)="logOut()">Выход</button>
+      </div>
+    </div>
+
+    <div *ngIf="!auth.isAuthenticatedAsAdmin()">
+      <div class="col-md-1 offset-md-9">
+        <button mat-button class="btn btn-block" (click)="logOut()">Выход</button>
+      </div>
     </div>
   </div>
 </div>

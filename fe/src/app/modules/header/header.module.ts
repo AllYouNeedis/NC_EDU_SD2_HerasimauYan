@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {HeaderComponent} from './components/header.component';
 import {MatButtonModule, MatIconModule} from '@angular/material';
+import {CommonModule} from '@angular/common';
 
 
 @NgModule({
@@ -9,7 +10,8 @@ import {MatButtonModule, MatIconModule} from '@angular/material';
   ],
   imports: [
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    CommonModule
   ],
   providers: [],
   exports: [HeaderComponent]

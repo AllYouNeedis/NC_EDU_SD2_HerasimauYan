@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid mt-3">
   <div *ngIf="inited" class="row flex-xl-nowrap" cdkDropListGroup>
 
     <div class="col-md-3 p-0">
@@ -7,7 +7,7 @@
 
     <div class="col-md-6">
       <div class = "head">
-        <mat-form-field>
+        <mat-form-field class="w-100">
           <input matInput type="text" placeholder="Название опроса" [(ngModel)]="pollModel.title">
         </mat-form-field>
       </div>
@@ -17,22 +17,59 @@
         id="poll-constructor-list"
         [cdkDropListConnectedTo]="dropListConnectedTo"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let topic of pollModel.topics ; let i = index" cdkDrag>
-          <app-topic-question-only [topicModel]="topic"></app-topic-question-only>
-          <button mat-icon-button color="warn" (click)="deleteTopic(i)">
-            <mat-icon style="font-size: 24px;">close</mat-icon>
-          </button>
+
+        <div class="example-box m-2" *ngFor="let topic of pollModel.topics ; let i = index" cdkDrag>
+          <div class="container-fluid">
+            <div class="row flex-md-nowrap">
+              <div class="col-12">
+                <app-topic-question-only [topicModel]="topic"></app-topic-question-only>
+                <button mat-icon-button color="warn" (click)="deleteTopic(i)">
+                  <mat-icon style="font-size: 24px;">close</mat-icon>
+                </button>
+                <div class="drag-handle" cdkDragHandle>
+                  +
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="example-box" *ngFor="let question of pollModel.questions ; let i = index" cdkDrag>
-          <app-question-details [questionOption]="question"></app-question-details>
-          <button mat-icon-button color="warn" (click)="deleteQuestionOption(i)">
-            <mat-icon style="font-size: 24px;">close</mat-icon>
-          </button>
+
+        <div class="example-box m-2" *ngFor="let question of pollModel.questions ; let i = index" cdkDrag>
+          <div class="container-fluid">
+
+            <div class="row flex-md-nowrap">
+              <div class="col-md-10">
+                <app-question-details [questionOption]="question"></app-question-details>
+              </div>
+              <div class="col-md-2">
+                <button mat-icon-button color="warn" (click)="deleteQuestionOption(i)">
+                  <mat-icon style="font-size: 24px;">close</mat-icon>
+                </button>
+                <div class="drag-handle" cdkDragHandle>
+                  +
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <button mat-button color="primary" (click)="submit()">Отправить опрос</button>
-      <button mat-button color="primary" (click)="saveAsDraft()">Сохранить как черновик</button>
+      <div class="container-fluid">
+        <div class="row flex-md-nowrap">
+
+          <div class="col-md-4">
+            <button mat-button color="primary" (click)="saveAsDraft()">Сохранить как черновик</button>
+          </div>
+
+          <div class="col-md-4 offset-md-4">
+            <button mat-button color="primary" (click)="submit()">Отправить опрос</button>
+          </div>
+
+        </div>
+      </div>
+
+
     </div>
 
     <div class="col-md-3 p-0">

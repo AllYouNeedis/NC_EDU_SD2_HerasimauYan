@@ -3,13 +3,11 @@
   <ng-template ngSwitchCase="chooseOne"><ng-content *ngTemplateOutlet="chooseOne"></ng-content></ng-template>
 </div>
 
-<!--<ng-container *ngTemplateOutlet="this[questionOption.type]"></ng-container>-->
-
 <ng-template #text>
-  <mat-form-field>
+  <mat-form-field class="w-100">
     <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title">
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="w-100">
     <input matInput type="text" placeholder="Краткий ответ" disabled>
   </mat-form-field>
   <mat-slide-toggle [(ngModel)]="questionOption.required">Обязательный</mat-slide-toggle>
