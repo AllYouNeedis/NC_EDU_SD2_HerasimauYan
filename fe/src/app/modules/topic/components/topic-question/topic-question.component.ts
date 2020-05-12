@@ -40,7 +40,7 @@ export class TopicQuestionComponent implements AfterViewInit, AfterViewInit, OnD
       const draggedInData = event.previousContainer.data[event.previousIndex];
       if (draggedInData instanceof QuestionOption) {
         if (event.previousContainer.id === 'question-menu') {
-          this.topicModel.questions.push(QuestionOption.cloneBase(draggedInData));
+          this.topicModel.questions.push(QuestionOption.cloneBaseWoId(draggedInData));
           moveItemInArray(this.topicModel.questions, this.topicModel.questions.length - 1, event.currentIndex);
         } else {
           transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);

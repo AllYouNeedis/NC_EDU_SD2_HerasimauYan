@@ -20,6 +20,18 @@
   font-size: 14px;
 }
 
+.drag-handle {
+  position: absolute;
+  top: -20px;
+  right: 10px;
+  color: black;
+  font-weight: bold;
+  font-size: 24px;
+  opacity: 0.60;
+  cursor: pointer;
+
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;

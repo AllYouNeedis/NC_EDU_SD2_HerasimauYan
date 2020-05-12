@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Poll} from '../modules/poll/models/poll';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class PollService {
@@ -11,9 +11,9 @@ export class PollService {
   constructor(private http: HttpClient) {
   }
 
-  addPoll(poll: Poll) {
+  addPoll(poll: Poll): Observable<any> {
     console.log(poll);
-    this.http.post(this.pollsUrl, poll).subscribe((data: Poll) => console.log(data), error => console.log(error));
+    return this.http.post(this.pollsUrl, poll);
   }
 
   getPollById(id: number): Observable<any> {

@@ -11,8 +11,8 @@ export class TopicService {
   constructor(private http: HttpClient) {
   }
 
-  addTopic(topic: Topic) {
-    this.http.post(this.topicsUrl, topic).subscribe((data: Topic) => console.log(data), error => console.log(error));
+  addTopic(topic: Topic): Observable<Topic> {
+    return this.http.post<Topic>(this.topicsUrl, topic);
   }
 
   getSharedTopics(): Observable<any> {

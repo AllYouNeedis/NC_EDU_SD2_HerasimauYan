@@ -1,35 +1,44 @@
-<div class = "head">
-  <mat-form-field>
-    <input matInput type="text" placeholder="Название темы" [(ngModel)]="topicModel.title">
-  </mat-form-field>
-</div>
+<div class="container-fluid mt-3">
+  <div class="row flex-xl-nowrap" cdkDropListGroup>
+    <div class="col-md-3 p-0">
+      <app-question-menu></app-question-menu>
+    </div>
 
-<div
-  cdkDropList
-  class="menu-list"
-  #listQuestionMenu="cdkDropList"
-  [cdkDropListData]="menuQuestion"
-  [cdkDropListConnectedTo]="listPoll"
-  (cdkDropListDropped)="drop($event)">
+    <div class="col-md-6">
+      <div class = "head">
+        <mat-form-field class="w-100">
+          <input matInput type="text" placeholder="Название темы" [(ngModel)]="topicModel.title">
+        </mat-form-field>
+      </div>
 
-  <div class="menu-list-entity" *ngFor="let question of menuQuestion; let i = index" cdkDrag>
-    {{question.type}}
+      <div
+        cdkDropList
+        class="example-list"
+        [cdkDropListData]="topicModel.questions"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box m-2" *ngFor="let question of topicModel.questions ; let i = index" cdkDrag>
+          <div class="container-fluid">
+
+            <div class="row flex-md-nowrap">
+              <div class="col-md-10">
+                <app-question-details [questionOption]="question"></app-question-details>
+              </div>
+              <div class="col-md-2">
+                <button mat-icon-button color="warn" (click)="deleteQuestionOption(i)">
+                  <mat-icon style="font-size: 24px;">close</mat-icon>
+                </button>
+                <div class="drag-handle" cdkDragHandle>
+                  +
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button mat-button color="primary" (click)="submit()">Сохранить тему</button>
+      </div>
+    </div>
   </div>
-</div>
-
-<div
-  cdkDropList
-  class="example-list"
-  [cdkDropListData]="topicModel.questions"
-  #listPoll="cdkDropList"
-  [cdkDropListConnectedTo]="listQuestionMenu"
-  (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let question of topicModel.questions ; let i = index" cdkDrag>
-    <app-question-details [questionOption]="question"></app-question-details>
-    <button mat-button color="warn" (click)="topicModel.deleteQuestionOption(i)">del</button>
-  </div>
-</div>
-
-<div>
-  <button mat-button color="primary" (click)="submit()">Сохранить тему</button>
 </div>

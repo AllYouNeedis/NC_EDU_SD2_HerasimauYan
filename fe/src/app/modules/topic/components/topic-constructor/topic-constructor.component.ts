@@ -3,6 +3,9 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {QuestionOption} from '../../../question/models/question-option';
 import {Topic} from '../../models/topic';
 import {TopicService} from '../../../../services/topic.service';
+import {SnackBarService} from '../../../../services/snack-bar/snack-bar.service';
+import {Router} from '@angular/router';
+import {QuestionValidateService} from '../../../../services/question-validate/question-validate.service';
 
 @Component({
   selector: 'app-topic-constructor',
@@ -14,7 +17,10 @@ export class TopicConstructorComponent implements OnInit {
   menuQuestion: QuestionOption[] = [];
   topicModel: Topic;
 
-  constructor(private topicService: TopicService) {
+  constructor(private topicService: TopicService,
+              private snack: SnackBarService,
+              private val: QuestionValidateService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -33,7 +39,37 @@ export class TopicConstructorComponent implements OnInit {
     }
   }
 
+  deleteQuestionOption(id: number) {
+    this.topicModel.deleteQuestionOption(id);
+  }
+
   submit() {
-    this.topicService.addTopic(this.topicModel);
+    if (!this.val.validString(this.topicModel.title)) {
+      this.snack.openSnackBar('Тема должна содержать заголовок!');
+      return;
+    }
+
+    if (!this.val.isAllQuestionsHasTitle(this.topicModel.questions)) {
+      this.snack.openSnackBar('Все вопросы должны быть непустыми');
+      return;
+    }
+
+    if (!this.val.isAllQuestionOptionsHasVariantValue(this.topicModel.questions)) {
+      this.snack.openSnackBar('Все вопросы с вариантами ответа должны иметь как минимум два непустых варианта!');
+      return;
+    }
+
+    if (this.topicModel.questions.length === 0) {
+      this.snack.openSnackBar('В теме должен быть хотя бы один вопрос..');
+      return;
+    }
+
+    this.topicService.addTopic(this.topicModel).subscribe(topic => {
+      this.snack.openSnackBar('Тема с заголовком ' + topic.title + 'успешно создана!');
+      this.router.navigate(['/home']);
+    }, error => {
+      this.snack.openSnackBar('Произошла ошибка! Посмотрите в консоль для детальной информации..');
+      console.error(error);
+    });
   }
 }

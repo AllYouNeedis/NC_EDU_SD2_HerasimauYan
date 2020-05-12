@@ -75,3 +75,13 @@
   cursor: pointer;
 
 }
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 40px;
+  color: red;
+  font-weight: bold;
+  font-size: 24px;
+  cursor: pointer;
+}

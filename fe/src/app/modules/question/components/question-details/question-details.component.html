@@ -14,10 +14,10 @@
 </ng-template>
 
 <ng-template #chooseOne>
-  <mat-form-field>
+  <mat-form-field class="w-100">
     <input matInput type="text" placeholder="Текст вопроса" [(ngModel)]="questionOption.title">
   </mat-form-field>
-  <div class = "question-variants"  *ngFor="let variant of questionOption.questionVariants; let i = index">
+  <div class = "w-100"  *ngFor="let variant of questionOption.questionVariants; let i = index">
     <mat-form-field>
       <input matInput type="text" placeholder="Вариант {{i+1}}" [(ngModel)]="variant.content">
     </mat-form-field>

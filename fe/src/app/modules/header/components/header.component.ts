@@ -20,6 +20,10 @@ export class HeaderComponent {
 
   logOut() {
     this.userService.logOut();
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/']);
+  }
+
+  createTopic() {
+    this.router.navigate(['/topic-constructor']);
   }
 }

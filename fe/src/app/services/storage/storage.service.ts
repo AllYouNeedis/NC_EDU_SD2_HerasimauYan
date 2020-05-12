@@ -21,7 +21,10 @@ export class StorageService {
   }
 
   public getCurrentUser(): User {
-    return this.currentUser || JSON.parse(localStorage.getItem(this.CURRENT_USER));
+    if (this.currentUser == null || this.currentUser.userRole == null || this.currentUser.userRole === '') {
+      this.currentUser = JSON.parse(localStorage.getItem(this.CURRENT_USER));
+    }
+    return this.currentUser;
   }
 
   public getToken(): string {

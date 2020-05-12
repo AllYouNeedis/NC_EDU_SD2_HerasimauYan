@@ -6,6 +6,9 @@ import {Poll} from '../../models/poll';
 import {Topic} from '../../../topic/models/topic';
 import {DragDropService} from '../../../../services/drag-drop.service';
 import {StorageService} from '../../../../services/storage/storage.service';
+import {SnackBarService} from '../../../../services/snack-bar/snack-bar.service';
+import {Router} from '@angular/router';
+import {QuestionValidateService} from '../../../../services/question-validate/question-validate.service';
 
 @Component({
   selector: 'app-constructor',
@@ -24,7 +27,10 @@ export class ConstructorComponent implements OnInit, AfterContentInit {
 
   constructor(private pollService: PollService,
               private dragDropService: DragDropService,
-              private storage: StorageService) {
+              private storage: StorageService,
+              private snack: SnackBarService,
+              private val: QuestionValidateService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -89,12 +95,44 @@ export class ConstructorComponent implements OnInit, AfterContentInit {
   }
 
   submit() {
+    if (!this.val.validString(this.pollModel.title)) {
+      this.snack.openErrorSnackBar('Опрос должен содержать заголовок!!!');
+      return;
+    }
+    if (!this.val.isAllQuestionsHasTitle(this.pollModel.questions)) {
+      this.snack.openErrorSnackBar('Все вопросы должны содержать заголовок!!!');
+      return;
+    }
+    if (!this.pollModel.topics.every(topic => this.val.isAllQuestionsHasTitle(topic.questions))) {
+      this.snack.openErrorSnackBar('Все вопросы в темах должны содержать заголовок!');
+      return;
+    }
+    if (this.pollModel.questions.length !== 0 || !this.val.isAllQuestionOptionsHasVariantValue(this.pollModel.questions)) {
+      this.snack.openErrorSnackBar('Все вопросы с вариантами должны содержать как минимум 2 непустых варианта!');
+      return;
+    }
+    if (this.pollModel.topics.every(topic => this.val.isAllQuestionOptionsHasVariantValue(topic.questions))) {
+      this.snack.openErrorSnackBar('Все вопросы с вариантами в темах должны содержать как минимум 2 непустых варианта!');
+    }
+    if (this.pollModel.questions.length === 0 && this.pollModel.topics.every(topic => topic.questions.length === 0)) {
+      this.snack.openErrorSnackBar('Опрос должен содержать хотя бы один вопрос....');
+      return;
+    }
+
     this.pollModel.submitted = true;
-    this.pollService.addPoll(this.pollModel);
+    this.pollService.addPoll(this.pollModel).subscribe(poll => {
+      this.snack.openLongSnackBar('Опрос успешно засабмичен! Ссылка на опрос: http://localhost:4200/poll/' + poll.id);
+      this.router.navigate(['/home']);
+    });
   }
 
   saveAsDraft() {
     this.pollModel.submitted = false;
-    this.pollService.addPoll(this.pollModel);
+    this.pollService.addPoll(this.pollModel).subscribe(poll => {
+      this.snack.openSnackBar('Опрос успешно сохранен! Заголовок опроса: ' + poll.title);
+      this.router.navigate(['/home']);
+    });
+
+
   }
 }

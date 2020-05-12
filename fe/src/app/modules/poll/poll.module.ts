@@ -19,6 +19,7 @@ import {TopicService} from '../../services/topic.service';
 import {TopicModule} from '../topic/topic.module';
 import {SubmittedPollListComponent} from './components/submitted-poll-list/submitted-poll-list.component';
 import {UnsubmittedPollListComponent} from './components/unsubmitted-poll-list/unsubmitted-poll-list.component';
+import {AnswerModule} from "../answer/answer.module";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import {UnsubmittedPollListComponent} from './components/unsubmitted-poll-list/u
     TextFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatDatepickerModule, TopicModule, MatIconModule, MatCardModule, MatListModule],
+    MatDatepickerModule, TopicModule, MatIconModule, MatCardModule, MatListModule, AnswerModule],
   providers: [TopicService],
   exports: [
     ConstructorComponent,

@@ -1,10 +1,10 @@
 .header {
-  min-height: 100px;
+  min-height: 80px;
   background-color: deepskyblue;
 }
 
-.header button {
-  min-height: 100px;
+.menu-button {
+  min-height: 80px;
 }
 
 .header mat-icon {

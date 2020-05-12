@@ -3,6 +3,7 @@ import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {UserService} from '../../../../services/user.service';
 import {User} from '../../models/user';
 import {Router} from '@angular/router';
+import {SnackBarService} from "../../../../services/snack-bar/snack-bar.service";
 
 @Component({
   selector: 'app-reg',
@@ -14,7 +15,8 @@ export class RegComponent implements OnInit {
   defaultRole = 'USER';
   form: FormGroup;
   constructor(private userService: UserService,
-              private router: Router) {}
+              private router: Router,
+              private snack: SnackBarService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -39,6 +41,7 @@ export class RegComponent implements OnInit {
     this.userService.addUser(user)
       .subscribe((data: User) => {
         console.log(data);
+        this.snack.openSnackBar('Пользователь успешно создан!');
         this.router.navigate(['/auth']);
       }, error => console.log(error));
   }

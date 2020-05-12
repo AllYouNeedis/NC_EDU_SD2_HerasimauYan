@@ -4,6 +4,8 @@
       <mat-card-title class="title text-center">{{pollModel.title}}</mat-card-title>
       <mat-card-content>
         <p>Ответов: {{passedNum}}</p>
+
+        <p>Ссылка на опрос: http://localhost:4200/poll/{{pollModel.id}}</p>
       </mat-card-content>
     </mat-card>
     <div *ngIf="passedNum">

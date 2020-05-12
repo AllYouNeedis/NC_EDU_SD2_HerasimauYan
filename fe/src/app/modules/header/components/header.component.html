@@ -2,26 +2,25 @@
   <div class="row flex-md-nowrap header">
 
     <div class="col-md-1">
-      <button mat-button class="btn" (click)="goHome()">
+      <button mat-button class="menu-button pl-0" (click)="goHome()">
         <mat-icon>home</mat-icon>
         <span class="m-md-4">Домой</span>
       </button>
     </div>
 
-    <div *ngIf="auth.isAuthenticatedAsAdmin()">
-      <div class="col-md-2">
-        <button mat-button class="btn btn-block" (click)="logOut()">Создать тему</button>
-      </div>
-      <div class="col-md-1 offset-md-7 ">
-        <button mat-button class="btn btn-block" (click)="logOut()">Выход</button>
-      </div>
+    <div class="col-md-1" *ngIf="auth.isAuthenticatedAsAdmin(); else unset">
+      <button mat-button class="menu-button" (click)="createTopic()">Создать тему</button>
+    </div>
+    <div *ngIf="auth.isAuthenticatedAsAdmin()" class="col-md-1 offset-md-9">
+      <button mat-button class="menu-button" (click)="logOut()">Выход</button>
     </div>
 
-    <div *ngIf="!auth.isAuthenticatedAsAdmin()">
-      <div class="col-md-1 offset-md-9">
-        <button mat-button class="btn btn-block" (click)="logOut()">Выход</button>
-      </div>
-    </div>
   </div>
 </div>
+
+<ng-template #unset>
+  <div class="col-md-1 offset-md-10">
+    <button mat-button class="menu-button" (click)="logOut()">Выход</button>
+  </div>
+</ng-template>
 

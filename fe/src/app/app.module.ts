@@ -21,12 +21,13 @@ import {APIInterceptor} from './interceptors/api-interceptor';
 import {CanActivateLoginPagesService} from './services/security/can-activate-login-pages.service';
 import {CanActivateNotLoginPages} from './services/security/can-activate-not-login-pages.service';
 import {CanActivateAdminPagesService} from './services/security/can-activate-admin-pages.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const appRoutes: Routes = [
   {path: '', component: UserAuthComponent, canActivate: [CanActivateNotLoginPages]},
   {path: 'home', component: HomeComponent, canActivate: [CanActivateLoginPagesService]},
   {path: 'reg', component: UserRegComponent, canActivate: [CanActivateNotLoginPages]},
-  {path: 'auth', component: UserAuthComponent, canActivate: [CanActivateNotLoginPages]},
+  // {path: 'auth', component: UserAuthComponent, canActivate: [CanActivateNotLoginPages]},
   {path: 'poll-constructor/:id', component: PollConstructorComponent, canActivate: [CanActivateLoginPagesService]},
   {path: 'topic-constructor', component: SharedTopicConstructorComponent, canActivate: [CanActivateAdminPagesService]},
   {path: 'poll/:id', component: PollPassingPageComponent},
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
     NgbModule,
     FormsModule,
     MatNativeDateModule,
+    MatSnackBarModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule
   ],

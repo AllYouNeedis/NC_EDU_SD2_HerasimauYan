@@ -2,12 +2,17 @@
   <div class="col-md-6 offset-md-3 flex-md-nowrap">
     <mat-card>
       <mat-card-title class="text-center">{{pollModel.title}}</mat-card-title>
+    </mat-card>
+    <mat-card class="mt-4" *ngFor="let topic of pollModel.topics ; let i = index">
+      <mat-card-title class="text-center">{{topic.title}}</mat-card-title>
       <mat-card-content>
-        <div *ngFor="let topic of pollModel.topics ; let i = index">
           <app-topic-passing [topicModel]="pollModel.topics[i]" [topicAnswer]="pollAnswer.topicAnswers[i]">
           </app-topic-passing>
-        </div>
       </mat-card-content>
+    </mat-card>
+    <mat-card class="mt-4" *ngFor="let question of pollModel.questions ; let i = index">
+      <app-answer [questionOption]="pollModel.questions[i]" [answer]="pollAnswer.questionAnswers[i]">
+      </app-answer>
     </mat-card>
     <mat-card-actions>
       <button mat-button (click)="submit()">Отправить ответ</button>

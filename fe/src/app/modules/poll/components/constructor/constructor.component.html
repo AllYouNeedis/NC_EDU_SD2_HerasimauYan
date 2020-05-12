@@ -23,7 +23,7 @@
             <div class="row flex-md-nowrap">
               <div class="col-12">
                 <app-topic-question-only [topicModel]="topic"></app-topic-question-only>
-                <button mat-icon-button color="warn" (click)="deleteTopic(i)">
+                <button mat-icon-button color="warn" class="close-button" (click)="deleteTopic(i)">
                   <mat-icon style="font-size: 24px;">close</mat-icon>
                 </button>
                 <div class="drag-handle" cdkDragHandle>
@@ -68,7 +68,6 @@
 
         </div>
       </div>
-
 
     </div>
 
